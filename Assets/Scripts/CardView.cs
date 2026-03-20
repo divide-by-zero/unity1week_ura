@@ -1,5 +1,5 @@
-using System.Threading;
-using Cysharp.Threading.Tasks;
+using System;
+using System.Collections;
 using DG.Tweening;
 using InfinitePorker.Logic;
 using KszUtil;
@@ -36,7 +36,14 @@ public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
 
     public BoolReactiveProperty IsOpen { get; } = new(false);
 
-    private bool _isPlaying;
+    private readonly Subject<CardView> _onClickSubject = new();
+    public IObservable<CardView> OnClickAsObservable() => _onClickSubject;
+
+    public bool IsClickable { get; set; } = true;
+    public bool IsFlipping { get; private set; }
+
+    private Sprite _presetSprite;
+
     private Tweener _selectTween;
     private Tweener _hoverTween;
     private Vector3 _baseLocalPos;
@@ -47,41 +54,64 @@ public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
         _baseLocalPos = _cardParent.localPosition;
     }
 
-    // --- Open / Close ---
-
-    public async UniTask PlayOpen(CancellationToken ct = default)
+    public void SetCardSprite(Sprite sprite)
     {
-        if (_isPlaying || IsOpen.Value) return;
-        _isPlaying = true;
-
-        _spriteRenderer.sprite = _porkerSetting.CardSprites.RandomAt();
-
-        var seq = DOTween.Sequence()
-            .Append(_cardParent.DOLocalMoveY(_baseLocalPos.y + _flipLiftHeight, _flipLiftDuration).SetEase(Ease.OutQuad))
-            .Append(_cardParent.DOLocalRotate(new Vector3(0f, 0f, 180f), _flipDuration).SetEase(_flipEase))
-            .Append(_cardParent.DOLocalMoveY(_baseLocalPos.y, _flipLiftDuration).SetEase(Ease.InQuad))
-            .SetLink(gameObject);
-        await seq.ToUniTask(cancellationToken: ct);
-
-        IsOpen.Value = true;
-        _isPlaying = false;
+        _presetSprite = sprite;
     }
 
-    public async UniTask PlayClose(CancellationToken ct = default)
+    // --- Open / Close (コルーチンベース) ---
+
+    public Coroutine PlayOpen()
     {
-        if (_isPlaying || !IsOpen.Value) return;
-        _isPlaying = true;
-
-        var seq = DOTween.Sequence()
-            .Append(_cardParent.DOLocalMoveY(_baseLocalPos.y + _flipLiftHeight, _flipLiftDuration).SetEase(Ease.OutQuad))
-            .Append(_cardParent.DOLocalRotate(Vector3.zero, _flipDuration).SetEase(_flipEase))
-            .Append(_cardParent.DOLocalMoveY(_baseLocalPos.y, _flipLiftDuration).SetEase(Ease.InQuad))
-            .SetLink(gameObject);
-        await seq.ToUniTask(cancellationToken: ct);
-
-        IsOpen.Value = false;
-        _isPlaying = false;
+        if (IsFlipping || IsOpen.Value) return null;
+        _spriteRenderer.sprite = _presetSprite != null ? _presetSprite : _porkerSetting.CardSprites.RandomAt();
+        return StartCoroutine(FlipCoroutine(new Vector3(0f, 0f, 180f), true));
     }
+
+    public Coroutine PlayClose()
+    {
+        if (IsFlipping || !IsOpen.Value) return null;
+        return StartCoroutine(FlipCoroutine(Vector3.zero, false));
+    }
+
+    private IEnumerator FlipCoroutine(Vector3 targetRotation, bool openState)
+    {
+        IsFlipping = true;
+
+        var startPos = _baseLocalPos;
+        var liftPos = _baseLocalPos + Vector3.up * _flipLiftHeight;
+        var startRot = _cardParent.localEulerAngles;
+
+        // 持ち上げ
+        yield return LerpCoroutine(_flipLiftDuration,
+            t => _cardParent.localPosition = Vector3.Lerp(startPos, liftPos, EaseOutQuad(t)));
+
+        // 回転
+        yield return LerpCoroutine(_flipDuration,
+            t => _cardParent.localEulerAngles = Vector3.Lerp(startRot, targetRotation, t));
+
+        // 下ろす
+        yield return LerpCoroutine(_flipLiftDuration,
+            t => _cardParent.localPosition = Vector3.Lerp(liftPos, startPos, EaseInQuad(t)));
+
+        IsOpen.Value = openState;
+        IsFlipping = false;
+    }
+
+    private static IEnumerator LerpCoroutine(float duration, Action<float> onUpdate)
+    {
+        var elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            onUpdate(Mathf.Clamp01(elapsed / duration));
+            yield return null;
+        }
+        onUpdate(1f);
+    }
+
+    private static float EaseOutQuad(float t) => 1f - (1f - t) * (1f - t);
+    private static float EaseInQuad(float t) => t * t;
 
     // --- Select / Deselect ---
 
@@ -141,10 +171,8 @@ public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
 
     public void OnClick()
     {
-        if (IsOpen.Value)
-            PlayClose(destroyCancellationToken).Forget();
-        else
-            PlayOpen(destroyCancellationToken).Forget();
+        if (!IsClickable || IsFlipping || IsOpen.Value) return;
+        _onClickSubject.OnNext(this);
     }
 
     public void UpdateCard(string cardRankText, int cardDataSuit, bool cardIsRedSuit, int cardDataRank)

@@ -1,4 +1,5 @@
 using KszUtil.SceneManager;
+using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,13 +7,13 @@ using VContainer;
 
 public class TitleScreenController : MonoBehaviour
 {
-    [Header("章ボタン")]
-    [SerializeField] private Button _chapter1Button;
+    [Header("章ボタン")] [SerializeField] private Button _chapter1Button;
     [SerializeField] private Button _chapter2Button;
     [SerializeField] private Button _chapter3Button;
 
-    [Header("シーン名")]
-    [SerializeField] private string _chapter1Scene = "Chapter1";
+    [SerializeField] private TMP_Text _testText;
+
+    [Header("シーン名")] [SerializeField] private string _chapter1Scene = "Chapter1";
     [SerializeField] private string _chapter2Scene = "Chapter2";
     [SerializeField] private string _chapter3Scene = "Chapter3";
 
@@ -31,6 +32,8 @@ public class TitleScreenController : MonoBehaviour
         _chapter3Button.OnClickAsObservable()
             .Subscribe(_ => LoadChapter(_chapter3Scene))
             .AddTo(this);
+
+        _testText.text = "version 1.0 copyright (c) 2026 tsu-ki All rights reserved.";
     }
 
     private void UpdateButtonStates()

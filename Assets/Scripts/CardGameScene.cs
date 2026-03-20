@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class TitleScene : MonoBehaviour
+public class CardGameScene : MonoBehaviour
 {
     [SerializeField] private MultiWindowDetector _multiWindowDetector;
     [SerializeField] private Button _toggleButton;
@@ -38,7 +38,3 @@ public class TitleScene : MonoBehaviour
         _multiWindowDetector.SendPing("what's up?");
     }
 }
-
-
-
-

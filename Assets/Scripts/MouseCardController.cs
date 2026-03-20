@@ -35,10 +35,19 @@ public class MouseCardController : MonoBehaviour
             newHovered = hit.collider.GetComponentInParent<IMouseHoverable>();
         }
 
-        if (newHovered == _currentHovered) return;
+        if (newHovered != _currentHovered)
+        {
+            _currentHovered?.OnHoverExit();
+            _currentHovered = newHovered;
+            _currentHovered?.OnHoverEnter();
+        }
 
-        _currentHovered?.OnHoverExit();
-        _currentHovered = newHovered;
-        _currentHovered?.OnHoverEnter();
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (newHovered is IMouseClickable clickable)
+            {
+                clickable.OnClick();
+            }
+        }
     }
 }

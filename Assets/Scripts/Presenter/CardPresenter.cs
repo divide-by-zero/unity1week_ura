@@ -41,11 +41,11 @@ namespace InfinitePorker.Presenter
                     if (isSelected)
                     {
                         AudioManager.Instance.Play(AudioEnum.Select);
-                        _cardView.CurrentSelectAsync(_cardView.destroyCancellationToken).Forget();
+                        _cardView.Select();
                     }
                     else
                     {
-                        _cardView.CurrentDeSelectAsync(_cardView.destroyCancellationToken).Forget();
+                        _cardView.Deselect();
                     }
                 })
                 .AddTo(_disposables);

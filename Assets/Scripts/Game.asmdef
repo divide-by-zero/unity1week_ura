@@ -9,7 +9,8 @@
         "Unity.Timeline",
         "DOTween.Modules",
         "VContainer",
-        "UniTask.DOTween"
+        "UniTask.DOTween",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fffc7f1d69376400096eab4b0dc21b5c, type: 3}
+  m_Name: InfinitPorkerSounds
+  m_EditorClassIdentifier: 
+  _registerSeDataList:
+  - name: Confirm
+    audioClip: {fileID: 8300000, guid: 0ad909f7d54130943b6202add367c4e1, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Check
+    audioClip: {fileID: 8300000, guid: f4850ec207d7a24459ed5dc3ec38f1a2, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Select
+    audioClip: {fileID: 8300000, guid: 61066dbd8d0045946ac53cf9a465f52b, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: DeSelect
+    audioClip: {fileID: 8300000, guid: 86dd47453b015584f837b2f726807cf1, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Undo
+    audioClip: {fileID: 8300000, guid: 76b3dcaa8137c614d9e45888dbe8e5ef, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Damage
+    audioClip: {fileID: 8300000, guid: 327caad8e4cfe4343910bb711db4555e, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Swap
+    audioClip: {fileID: 8300000, guid: a578950c0e956914e82cf7d4ebcaaef1, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Powerup
+    audioClip: {fileID: 8300000, guid: bf9d55dccde4bea41bf5ee8575ed46c0, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: HandEvaluate
+    audioClip: {fileID: 8300000, guid: 18b50cea912c66d4481b88f248fff9d6, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Back
+    audioClip: {fileID: 8300000, guid: 2f47062e25a0f9c4da8e9ea2292376e1, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Purchase
+    audioClip: {fileID: 8300000, guid: be12b52a698beb548b74f62130642e29, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: PurchaseFailed
+    audioClip: {fileID: 8300000, guid: 5069d628192cdce4ebd6b4ea374d7098, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: PlayerDamage
+    audioClip: {fileID: 8300000, guid: 1cbf2c03f630da14bb71be42176d0b5e, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: ItemUse
+    audioClip: {fileID: 8300000, guid: a578950c0e956914e82cf7d4ebcaaef1, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: GameOver
+    audioClip: {fileID: 8300000, guid: f0071ad9b30454295aece727fc52ffe3, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: GameClear
+    audioClip: {fileID: 8300000, guid: 8008fe95d40497e4a909a8dc7f12a3ec, type: 3}
+    volume: 0.555
+    pitch: 1
+    isLoop: 0
+  - name: Error
+    audioClip: {fileID: 8300000, guid: 0061357a27806304ca3295d3c582eeb0, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: CardSound
+    audioClip: {fileID: 8300000, guid: a52f552bbe055d64a9aeca877c77b186, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  AudioMixer: {fileID: 24100000, guid: 7fe56ac61240e444aa13b07bdc08f25d, type: 2}
+  MixerBgmGroup: {fileID: 24327276, guid: 7fe56ac61240e444aa13b07bdc08f25d, type: 2}
+  MixerSeGroup: {fileID: 24387298, guid: 7fe56ac61240e444aa13b07bdc08f25d, type: 2}

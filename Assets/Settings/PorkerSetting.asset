@@ -1,0 +1,278 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7893b351f33d4c77968126731a309931, type: 3}
+  m_Name: PorkerSetting
+  m_EditorClassIdentifier: 
+  <HandSize>k__BackingField: 8
+  <PathConnectionRule>k__BackingField: 1
+  <HandInfoDictionary>k__BackingField:
+    keyValuePairs:
+    - key: 0
+      value:
+        JapaneseName: "\u30CF\u30A4\u30AB\u30FC\u30C9"
+        EnglishName: High Card
+        Magnitude: 1
+    - key: 1
+      value:
+        JapaneseName: "\u30EF\u30F3\u30DA\u30A2"
+        EnglishName: One Pair
+        Magnitude: 3
+    - key: 2
+      value:
+        JapaneseName: "\u30C4\u30FC\u30DA\u30A2"
+        EnglishName: Two Pair
+        Magnitude: 6
+    - key: 3
+      value:
+        JapaneseName: "\u30B9\u30EA\u30FC\u30DA\u30A2"
+        EnglishName: Three Pair
+        Magnitude: 20
+    - key: 4
+      value:
+        JapaneseName: "\u30D5\u30A9\u30FC\u30DA\u30A2"
+        EnglishName: Four Pair
+        Magnitude: 100
+    - key: 5
+      value:
+        JapaneseName: "\u30B9\u30EA\u30FC\u30AB\u30FC\u30C9"
+        EnglishName: Three of a Kind
+        Magnitude: 15
+    - key: 6
+      value:
+        JapaneseName: "\u30C0\u30D6\u30EB\u30B9\u30EA\u30FC\u30AB\u30FC\u30C9"
+        EnglishName: Double Three of a Kind
+        Magnitude: 60
+    - key: 7
+      value:
+        JapaneseName: "\u30D5\u30A9\u30FC\u30AB\u30FC\u30C9"
+        EnglishName: Four of a Kind
+        Magnitude: 25
+    - key: 8
+      value:
+        JapaneseName: "\u30D5\u30A1\u30A4\u30D6\u30AB\u30FC\u30C9"
+        EnglishName: Five of a Kind
+        Magnitude: 50
+    - key: 9
+      value:
+        JapaneseName: "\u30B7\u30C3\u30AF\u30B9\u30AB\u30FC\u30C9"
+        EnglishName: Six of a Kind
+        Magnitude: 100
+    - key: 10
+      value:
+        JapaneseName: "\u30BB\u30D6\u30F3\u30AB\u30FC\u30C9"
+        EnglishName: Seven of a Kind
+        Magnitude: 200
+    - key: 11
+      value:
+        JapaneseName: "\u30A8\u30A4\u30C8\u30AB\u30FC\u30C9"
+        EnglishName: Eight of a Kind
+        Magnitude: 500
+    - key: 12
+      value:
+        JapaneseName: "\u30D5\u30A1\u30A4\u30D6\u30D5\u30E9\u30C3\u30B7\u30E5"
+        EnglishName: Five Flush
+        Magnitude: 20
+    - key: 13
+      value:
+        JapaneseName: "\u30B7\u30C3\u30AF\u30B9\u30D5\u30E9\u30C3\u30B7\u30E5"
+        EnglishName: Six Flush
+        Magnitude: 50
+    - key: 14
+      value:
+        JapaneseName: "\u30BB\u30D6\u30F3\u30D5\u30E9\u30C3\u30B7\u30E5"
+        EnglishName: Seven Flush
+        Magnitude: 100
+    - key: 15
+      value:
+        JapaneseName: "\u30A8\u30A4\u30C8\u30D5\u30E9\u30C3\u30B7\u30E5"
+        EnglishName: Eight Flush
+        Magnitude: 250
+    - key: 16
+      value:
+        JapaneseName: "\u30D5\u30A1\u30A4\u30D6\u30B9\u30C8\u30EC\u30FC\u30C8"
+        EnglishName: Five Straight
+        Magnitude: 20
+    - key: 17
+      value:
+        JapaneseName: "\u30B7\u30C3\u30AF\u30B9\u30B9\u30C8\u30EC\u30FC\u30C8"
+        EnglishName: Six Straight
+        Magnitude: 50
+    - key: 18
+      value:
+        JapaneseName: "\u30BB\u30D6\u30F3\u30B9\u30C8\u30EC\u30FC\u30C8"
+        EnglishName: Seven Straight
+        Magnitude: 100
+    - key: 19
+      value:
+        JapaneseName: "\u30A8\u30A4\u30C8\u30B9\u30C8\u30EC\u30FC\u30C8"
+        EnglishName: Eight Straight
+        Magnitude: 250
+  <CardSprites>k__BackingField:
+  - {fileID: -2728281311887416041, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 9035415278952644170, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -5060159074613823592, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 919279360087022633, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 8367038623885577094, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 5947488609121318213, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 5871898411234216601, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 1129483705786194621, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 2288646753789159469, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -2444289490807111468, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 8233795051901754509, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 8840498441845326581, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -8322251398454967219, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 5025554018334775678, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -6705875103644733098, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 3697048050933076477, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -2681796581943152890, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -6160194328686772962, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 6072601772123366907, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 1964670721771618084, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 6489521018947743740, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 4739823074437157865, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -2239906934269244640, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 4944396216633559938, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -7858865632950441308, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -9037599304253292888, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -5217585384533174435, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -8632666280572087656, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -1899543482855112477, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 1791713675843609273, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -7904116857180425084, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 4719886470123052730, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -1432368047391100315, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -7210535817312706007, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -2707713847965521280, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 4718141916790203329, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 1419389419442377266, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -1624140049081850684, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 5584410718173921235, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -4248774397262740212, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -4754543911665267707, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -922480706503570398, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -327829272234997075, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 284772752910288393, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -493076360996769775, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 7245408098271151325, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -755026765528524786, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -8321589705789801282, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 7419587236591948484, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -570867715672363667, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -3644547030255575968, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -6369720940250972138, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -293574064648097353, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: 672695021346455442, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -7579152407438998988, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  - {fileID: -3136926902623889670, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  <CardMarks>k__BackingField:
+  - {fileID: 21300000, guid: a65d6c1ee2f7b45bba087c322bf0719f, type: 3}
+  - {fileID: 21300000, guid: dee66792eab6c4363b150e46aa5e15e7, type: 3}
+  - {fileID: 21300000, guid: 7f9dc92dad49745da881d2e2f25c8ff2, type: 3}
+  - {fileID: 21300000, guid: 5759cb372ed264aa092d7839e4e9a0e6, type: 3}
+  <ItemSprites>k__BackingField:
+    keyValuePairs:
+    - key: 0
+      value: {fileID: 21300000, guid: 2993ec4df405b4766914a6977d665291, type: 3}
+    - key: 1
+      value: {fileID: -4730549561216247847, guid: f9fe6c54a0a064729836af64475458eb, type: 3}
+    - key: 2
+      value: {fileID: 21300000, guid: 67eb76fc7025d43b1847cd63512b2c9c, type: 3}
+    - key: 3
+      value: {fileID: 21300000, guid: 89a316fd668704303b053c02f819dc2f, type: 3}
+    - key: 4
+      value: {fileID: 21300000, guid: e70bf4131736a44b5acdf1a58fe6964a, type: 3}
+    - key: 5
+      value: {fileID: 21300000, guid: 5bd8ff95f1e3d40ad9d441184ac27d84, type: 3}
+    - key: 6
+      value: {fileID: 21300000, guid: 83c54d22faf1b4cc198748d81b631f8f, type: 3}
+    - key: 7
+      value: {fileID: 21300000, guid: 2567c4704a287416a8af2451f26dde7d, type: 3}
+    - key: 8
+      value: {fileID: 21300000, guid: 649c06307c9f44a63896c62c50bde5df, type: 3}
+  <ItemBasePrices>k__BackingField:
+    keyValuePairs:
+    - key: 0
+      value: 4
+    - key: 1
+      value: 2
+    - key: 2
+      value: 6
+    - key: 3
+      value: 10
+    - key: 4
+      value: 20
+    - key: 5
+      value: 10
+    - key: 6
+      value: 8
+    - key: 7
+      value: 20
+    - key: 8
+      value: 3
+  <ItemPriceMultipliers>k__BackingField:
+    keyValuePairs:
+    - key: 0
+      value: 1.5
+    - key: 1
+      value: 1.5
+    - key: 2
+      value: 1.5
+    - key: 3
+      value: 1.5
+    - key: 4
+      value: 1.5
+    - key: 5
+      value: 1.5
+    - key: 6
+      value: 1.5
+    - key: 7
+      value: 1.5
+    - key: 8
+      value: 2
+  <ShopItemMessageDictionary>k__BackingField:
+    keyValuePairs:
+    - key: 0
+      value:
+        Message: "\u30AB\u30FC\u30C9\u30921\u679A\u9078\u3093\u3067\u3001\u6570\u5B57\u3092\uFF11\u301C\uFF13\u30E9\u30F3\u30C0\u30E0\u3067\u4E0A\u3052\u308B\u3053\u3068\u304C\u51FA\u6765\u307E\u3059\u3088\uFF01\n\u3061\u306A\u307F\u306BK\u306E\u4E0A\u306FA\u3067\u3059\u3051\u3069\u3001A\u3092\u8D85\u3048\u305F\u3089\u30FB\u30FB\u30FB\u3002\n\u3069\u3046\u306A\u3063\u3061\u3083\u3046\u3093\u3067\u3057\u3087\u3046\u306D\uFF1F"
+        NormalMessage: "\u30AB\u30FC\u30C9\u30921\u679A\u9078\u3093\u3067\u3001\u6570\u5B57\u3092\u4E00\u3064\u4E0A\u3052\u308B"
+    - key: 1
+      value:
+        Message: "\u30AB\u30FC\u30C9\u30921\u679A\u9078\u3093\u3067\u3001\u30DE\u30FC\u30AF\u3092\u5909\u66F4\u3059\u308B\u3053\u3068\u304C\u51FA\u6765\u307E\u3059\u3088\uFF01"
+        NormalMessage: "\u30AB\u30FC\u30C9\u30921\u679A\u9078\u3093\u3067\u3001\u30DE\u30FC\u30AF\u3092\u5909\u66F4"
+    - key: 2
+      value:
+        Message: "\u30AB\u30FC\u30C9\u30921\u679A\u9078\u3093\u3067\u3001\u77E2\u5370\u306E\u5411\u304D\u3092\u5909\u66F4\u3059\u308B\u3053\u3068\u304C\u51FA\u6765\u307E\u3059\u3088\uFF01\n\u305F\u3060\u3057\u3001\u30E9\u30F3\u30C0\u30E0\u306A\u306E\u3067\u6C17\u3092\u3064\u3051\u3066\u304F\u3060\u3055\u3044\u306D\u3002"
+        NormalMessage: "\u30AB\u30FC\u30C9\u30921\u679A\u9078\u3093\u3067\u3001\u77E2\u5370\u306E\u5411\u304D\u5909\u66F4"
+    - key: 3
+      value:
+        Message: "\u540C\u3058\u6570\u5B57\u306E\u30AB\u30FC\u30C9\u3092\uFF12\u679A\u9078\u629E\u3057\u3066\u3001\u77E2\u5370\u3092\u307E\u3068\u3081\u308B\u3053\u3068\u304C\u51FA\u6765\u307E\u3059\u3088\uFF01\n\uFF11\u679A\u306F\u77E2\u5370\u7121\u3057\u306B\u306A\u3063\u3061\u3083\u3046\u306E\u3067\u6C17\u3092\u3064\u3051\u3066\u304F\u3060\u3055\u3044\u306D"
+        NormalMessage: "\u540C\u3058\u6570\u5B57\u306E\u30AB\u30FC\u30C92\u679A\u3092\u9078\u3093\u3067\u3001\n\u77E2\u5370\u3092\u7247\u65B9\u306B\u307E\u3068\u3081\u308B"
+    - key: 4
+      value:
+        Message: "\u30AB\u30FC\u30C9\u3092\uFF11\u679A\u8FFD\u52A0\u3057\u307E\u3059\u3088\uFF01\n\u3082\u3061\u308D\u3093\u3001\uFF11\u679A\u6368\u3066\u306A\u3044\u3068\u3044\u3051\u306A\u3044\u3067\u3059"
+        NormalMessage: "\u30AB\u30FC\u30C91\u679A\u8FFD\u52A0"
+    - key: 5
+      value:
+        Message: "HP\u3092\uFF11\u56DE\u5FA9\u3057\u307E\u3059\u3002\nHP\u304C0\u306B\u306A\u308B\u3068\u6B7B\u3093\u3058\u3083\u3046\u306E\u3067\u6C17\u3092\u3064\u3051\u3066\u304F\u3060\u3055\u3044"
+        NormalMessage: "HP1\u56DE\u5FA9"
+    - key: 6
+      value:
+        Message: "\u3044\u3064\u3067\u3082\u30AB\u30FC\u30C9\u3092\u5165\u308C\u66FF\u3048\u3067\u304D\u307E\u3059\uFF01\n\u4FBF\u5229\u3067\u3059\u306D\uFF01"
+        NormalMessage: "\u30AB\u30FC\u30C9\u5165\u308C\u66FF\u3048"
+    - key: 7
+      value:
+        Message: "\u30AB\u30FC\u30C9\u30921\u679A\u9078\u3093\u3067\u3001\u77E2\u5370\u3092\u8FFD\u52A0\u51FA\u6765\u307E\u3059\n\u5168\u77E2\u5370\u304C\u4ED8\u3044\u305F\u30AB\u30FC\u30C9\u306B\u306F\u4F7F\u3048\u306A\u3044\u306E\u3067\u6C17\u3092\u4ED8\u3051\u3066\u304F\u3060\u3055\u3044\u306D\u3002"
+        NormalMessage: "\u30AB\u30FC\u30C9\u30921\u679A\u9078\u3093\u3067\u3001\u77E2\u5370\u8FFD\u52A0"
+    - key: 8
+      value:
+        Message: "\u54C1\u63C3\u3048\u304C\u6C17\u306B\u98DF\u308F\u306A\u3044\u306A\u3089\u3001\u304A\u91D1\u6255\u3063\u3066\u304F\u308C\u308C\u3070\u6E96\u5099\u3057\u76F4\u3057\u307E\u3059\u3088\u3002"
+        NormalMessage: 

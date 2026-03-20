@@ -12,8 +12,8 @@ public class CardView : MonoBehaviour, IMouseHoverable
 {
     [SerializeField] private PlayableDirector _turnOpen;
     [SerializeField] private PlayableDirector _turnClose;
-    [SerializeField, Range(0f, 1f)] private float _toggleProbability = 0.3f;
-    [SerializeField] private float _intervalSeconds = 2f;
+    [SerializeField] private PlayableDirector _hologramOn;
+    [SerializeField] private PlayableDirector _hologramOff;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private PorkerSetting _porkerSetting;
     [SerializeField] private TextMeshPro _text;
@@ -34,6 +34,7 @@ public class CardView : MonoBehaviour, IMouseHoverable
 
         _spriteRenderer.sprite = _porkerSetting.CardSprites.RandomAt();
 
+        HologramOnAsync(ct).Forget();
         await _turnOpen.PlayAsync(ct);
 
         IsOpen.Value = true;
@@ -45,6 +46,7 @@ public class CardView : MonoBehaviour, IMouseHoverable
         if (_isPlaying || !IsOpen.Value) return;
         _isPlaying = true;
 
+        HologramOffAsync(ct).Forget();
         await _turnClose.PlayAsync(ct);
 
         IsOpen.Value = false;
@@ -59,6 +61,16 @@ public class CardView : MonoBehaviour, IMouseHoverable
     public void OnHoverExit()
     {
         PlayClose(destroyCancellationToken).Forget();
+    }
+
+    public async UniTask HologramOnAsync(CancellationToken ct)
+    {
+        await _hologramOn.PlayAsync(ct);
+    }
+
+    public async UniTask HologramOffAsync(CancellationToken ct)
+    {
+        await _hologramOff.PlayAsync(ct);
     }
 
     public void UpdateCard(string cardRankText, int cardDataSuit, bool cardIsRedSuit, int cardDataRank)

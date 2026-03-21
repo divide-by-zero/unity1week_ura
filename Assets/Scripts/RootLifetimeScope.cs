@@ -1,9 +1,9 @@
 using InfinitePorker.Logic;
-using KszUtil.AudioManager;
+using KszUtil.Utilities;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using AudioSettings = KszUtil.AudioManager.AudioSettings;
+using AudioSettings = KszUtil.Utilities.AudioSettings;
 
 public class RootLifetimeScope : LifetimeScope
 {

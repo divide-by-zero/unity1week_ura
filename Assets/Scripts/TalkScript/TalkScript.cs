@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using KszUtil;
-using KszUtil.AudioManager;
+using KszUtil.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +15,7 @@ public class TalkScript : MonoBehaviour
     private int cmdIndex, mainIndex, endIndex;
     private bool isKeyWait;
     private bool isEnd; //会話終了
+    private bool isSkip; //早送りモード
 
     public CustomYieldInstruction WaitTalkEnd => new WaitUntil(() => isEnd);
 
@@ -31,6 +32,11 @@ public class TalkScript : MonoBehaviour
 
     public TMP_Text _screenText;
     public TalkCharactor[] _charactor;
+
+    public void ToggleSkip()
+    {
+        isSkip = !isSkip;
+    }
 
     public bool CmdProc(int cmdid)
     {
@@ -181,6 +187,7 @@ public class TalkScript : MonoBehaviour
 
         isKeyWait = false;
         isEnd = false;
+        isSkip = false;
         message = "";
         message_cnt = 0;
         fontTransition = 0;
@@ -194,6 +201,33 @@ public class TalkScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isSkip)
+        {
+            // スキップモード：テキスト即表示＋自動進行
+            message_cnt = message.Length;
+            _screenText.text = message;
+
+            if (isKeyWait)
+            {
+                isKeyWait = false;
+                CmdProc(cmd[cmdIndex++]);
+            }
+            else
+            {
+                if (CmdProc(cmdIndex))
+                {
+                    cmdIndex++;
+                }
+                else
+                {
+                    isEnd = true;
+                    isSkip = false;
+                }
+            }
+
+            return;
+        }
+
         //フォントの一文字ずつ描画
         if (fontTransition++ > fontTransitionSpeed)
         {

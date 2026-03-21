@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using InfinitePorker.Enums;
+using KszUtil;
 using KszUtil.SceneManager;
 using TMPro;
 using UniRx;
@@ -27,18 +28,18 @@ public class TitleScreenController : MonoBehaviour
 
     private void Start()
     {
+#if UNITY_EDITOR
         if (_debugClearedPhase != GamePhase.None)
         {
             _chapterProgress.ClearedPhases = _debugClearedPhase;
         }
-
+#endif
         _windowDetector.PingReceived.Subscribe(s =>
         {
-            _chapterProgress.ClearedPhases = GamePhase.BackDoor;
-            UpdateButtonStates();
+            UpdateButtonStates(GamePhase.BackDoor);
         }).AddTo(this);
 
-        UpdateButtonStates();
+        UpdateButtonStates(_chapterProgress.ClearedPhases);
 
         _buttonInfos.Select(info => info.Button.OnClickAsObservable().Select(_ => info.SceneName))
             .Merge()
@@ -48,11 +49,11 @@ public class TitleScreenController : MonoBehaviour
         _testText.text = "version 1.0 copyright (c) 2026 tsu-ki All rights reserved.";
     }
 
-    private void UpdateButtonStates()
+    private void UpdateButtonStates(GamePhase phase)
     {
         foreach (var info in _buttonInfos)
         {
-            info.Button.gameObject.SetActive(_chapterProgress.IsPhaseCleared(info.VisiblePhase));
+            info.Button.gameObject.SetActive(info.VisiblePhase.HasAnyFlags(phase));
         }
     }
 

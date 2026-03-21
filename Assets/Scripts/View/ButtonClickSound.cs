@@ -1,8 +1,7 @@
-using KszUtil.AudioManager;
+using KszUtil.Utilities;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
-using Utilities;
 
 namespace InfinitePorker
 {
@@ -10,11 +9,11 @@ namespace InfinitePorker
     public class ButtonClickSound : MonoBehaviour
     {
         [SerializeField] private Button _button;
-        [SerializeField] private AudioEnum _audioEnum;
+        [SerializeField] private string _audioName;
 
         private void Start()
         {
-            _button.OnClickAsObservable().Subscribe(_ => AudioManager.Instance.Play(_audioEnum)).AddTo(this);
+            _button.OnClickAsObservable().Subscribe(_ => AudioManager.Instance.Play(_audioName)).AddTo(this);
         }
 
         private void Reset()

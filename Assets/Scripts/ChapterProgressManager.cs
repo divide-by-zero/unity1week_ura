@@ -24,11 +24,6 @@ public class ChapterProgressManager
         }
     }
 
-    public bool IsPhaseCleared(GamePhase phase)
-    {
-        return ClearedPhases.HasAnyFlags(phase);
-    }
-
     public void Reset()
     {
         PlayerPrefs.DeleteKey(Key);

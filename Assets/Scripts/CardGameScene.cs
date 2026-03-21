@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using InfinitePorker.Logic;
-using KszUtil.AudioManager;
+using KszUtil.Utilities;
 using TMPro;
 using UniRx;
 using UnityEngine;

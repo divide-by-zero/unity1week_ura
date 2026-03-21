@@ -1,29 +1,45 @@
+using InfinitePorker.Enums;
+using KszUtil;
 using UnityEngine;
 
 public class ChapterProgressManager
 {
-    private const string Key = "ClearedChapter";
-    private const int TotalChapters = 3;
+    private const string Key = "ClearedPhase";
 
-    public int ClearedChapter
+    public GamePhase ClearedPhases
     {
-        get => PlayerPrefs.GetInt(Key, 0);
+        get => (GamePhase)PlayerPrefs.GetInt(Key, 0);
         set
         {
-            PlayerPrefs.SetInt(Key, Mathf.Clamp(value, 0, TotalChapters));
+            PlayerPrefs.SetInt(Key, (int)value);
             PlayerPrefs.Save();
         }
     }
 
-    public bool IsChapterUnlocked(int chapter)
+    public ChapterProgressManager()
     {
-        if (chapter <= 1) return true;
-        return ClearedChapter >= chapter - 1;
+        if (ClearedPhases == 0)
+        {
+            ClearedPhases = GamePhase.Start;
+        }
+    }
+
+    public bool IsPhaseCleared(GamePhase phase)
+    {
+        return ClearedPhases.HasAnyFlags(phase);
     }
 
     public void Reset()
     {
         PlayerPrefs.DeleteKey(Key);
         PlayerPrefs.Save();
+    }
+
+    public void UpdateProgress(GamePhase intro)
+    {
+        if (ClearedPhases < intro)
+        {
+            ClearedPhases = intro;
+        }
     }
 }

@@ -1,25 +1,27 @@
 using System;
-using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using InfinitePorker.Logic;
+using KszUtil.AudioManager;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using VContainer;
 
 public class CardGameScene : MonoBehaviour
 {
-    [Header("参照")]
-    [SerializeField] private GameObject _cardPrefab;
+    [Header("参照")] [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private PorkerSetting _porkerSetting;
     [SerializeField] private TMP_Text _statusText;
 
-    [Header("グリッド設定")]
-    [SerializeField] private int _columns = 4;
+    [Header("グリッド設定")] [SerializeField] private int _columns = 4;
     [SerializeField] private int _rows = 4;
     [SerializeField] private float _cardSpacingX = 1.5f;
     [SerializeField] private float _cardSpacingZ = 2.0f;
 
-    [Header("ゲーム設定")]
-    [SerializeField] private float _mismatchDelay = 1.5f;
+    [Header("ゲーム設定")] [SerializeField] private float _mismatchDelay = 1.5f;
+
+    [Inject] AudioManager _audioManager;
 
     private CardView[] _cardViews;
     private int[] _cardPairIds;
@@ -35,7 +37,6 @@ public class CardGameScene : MonoBehaviour
     {
         InitializeGrid();
         SubscribeToAllCardClicks();
-        StartCoroutine(GameLoop());
     }
 
     private void OnDestroy()
@@ -97,30 +98,30 @@ public class CardGameScene : MonoBehaviour
         }
     }
 
-    private IEnumerator GameLoop()
+    public async UniTask GameLoopAsync(CancellationToken ct)
     {
         // CardView.Start() 完了保証
-        yield return null;
+        await UniTask.Yield(ct);
 
         while (_matchedPairs < _totalPairs)
         {
             // 1枚目を待つ
             SetAllClickable(true);
             _lastClickedIndex = -1;
-            yield return new WaitUntil(() => _lastClickedIndex >= 0);
+            await UniTask.WaitUntil(() => _lastClickedIndex >= 0, cancellationToken: ct);
             var firstIndex = _lastClickedIndex;
             _lastClickedIndex = -1;
 
             _cardViews[firstIndex].IsClickable = false;
-            yield return _cardViews[firstIndex].PlayOpen();
+            await _cardViews[firstIndex].PlayOpenAsync(ct);
 
             // 2枚目を待つ
-            yield return new WaitUntil(() => _lastClickedIndex >= 0);
+            await UniTask.WaitUntil(() => _lastClickedIndex >= 0, cancellationToken: ct);
             var secondIndex = _lastClickedIndex;
             _lastClickedIndex = -1;
 
             SetAllClickable(false);
-            yield return _cardViews[secondIndex].PlayOpen();
+            await _cardViews[secondIndex].PlayOpenAsync(ct);
 
             _turnCount++;
             UpdateStatusText();
@@ -138,11 +139,13 @@ public class CardGameScene : MonoBehaviour
             }
             else
             {
-                yield return new WaitForSeconds(_mismatchDelay);
+                await UniTask.Delay(TimeSpan.FromSeconds(_mismatchDelay), cancellationToken: ct);
 
                 // 両方同時に閉じる
-                _cardViews[firstIndex].PlayClose();
-                yield return _cardViews[secondIndex].PlayClose();
+                await UniTask.WhenAll(
+                    _cardViews[firstIndex].PlayCloseAsync(ct),
+                    _cardViews[secondIndex].PlayCloseAsync(ct)
+                );
             }
         }
 

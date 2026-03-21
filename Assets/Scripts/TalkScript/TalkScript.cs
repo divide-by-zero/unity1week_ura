@@ -1,43 +1,36 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using KszUtil;
 using KszUtil.AudioManager;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class TalkScript : MonoBehaviour
 {
     private List<string> cmd = new List<string>();
+    [SerializeField] private SerializableDictionary<string, Sprite> spriteDict = new SerializableDictionary<string, Sprite>();
     private int cmdIndex, mainIndex, endIndex;
     private bool isKeyWait;
     private bool isEnd; //会話終了
 
-    public static bool IsDisp => SceneManager.GetSceneByName("Talk").isLoaded;
-
     public CustomYieldInstruction WaitTalkEnd => new WaitUntil(() => isEnd);
 
-    private int wait_active_gap;
+    [SerializeField] private UIFader _uiFader;
+    public UIFader UIFader => _uiFader;
 
     public string message;
     public string errorMessage = "";
-    int message_cnt;
-    float font_x, font_y;
-    float font_size;
-    int fontTransition;
-    int fontTransitionSpeed;
+    private int message_cnt;
+    private float font_x, font_y;
+    private float font_size;
+    private int fontTransition;
+    private int fontTransitionSpeed;
 
-//    public Text _screenText;
     public TMP_Text _screenText;
-    public string talkScriptStr;
     public TalkCharactor[] _charactor;
-
-    // Use this for initialization
-    void Start()
-    {
-    }
 
     public bool CmdProc(int cmdid)
     {
@@ -46,86 +39,72 @@ public class TalkScript : MonoBehaviour
         return true;
     }
 
-    public void CmdProc(string cm)
+    public void CmdProc(string cm, bool isDryRun = false)
     {
-        var lines = cm.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+        var lines = cm.ToLower().Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
         int argCnt = 0;
-        if (lines[0].Equals("fontspeed"))
+        switch (lines[0])
         {
-            fontTransitionSpeed = int.Parse(lines[++argCnt]);
-            return;
-        }
-
-        if (lines[0].Equals("wait_active_gap"))
-        {
-            wait_active_gap = int.Parse(lines[++argCnt]);
-            return;
-        }
-
-        if (lines[0].Equals("set"))
-        {
-            var id = int.Parse(lines[++argCnt]);
+            case "fontspeed":
+                fontTransitionSpeed = int.Parse(lines[++argCnt]);
+                return;
+            case "set":
+            {
+                var id = int.Parse(lines[++argCnt]);
 //            _charactor[id].x = Float.parseFloat(lines[++argCnt]);
 //            _charactor[id].y = Float.parseFloat(lines[++argCnt]);
-            return;
-        }
-
-
-        if (lines[0].Equals("talk"))
-        {
-            int id = int.Parse(lines[++argCnt]);
-            message = lines[++argCnt];
-            message_cnt = 0;
-
-            //会話をしているキャラだけアクティブに
-            for (var i = 0; i < _charactor.Length; i++)
-            {
-                _charactor[i].isTalk = id == i;
+                return;
             }
+            case "sprite":
+            {
+                var id = int.Parse(lines[++argCnt]);
+                _charactor[id].SetSprite(spriteDict[lines[++argCnt]]);
+                break;
+            }
+            case "talk":
+            {
+                int id = int.Parse(lines[++argCnt]);
+                message = lines[++argCnt];
+                message_cnt = 0;
 
-            fontTransition = 0;
-            isKeyWait = true;
-            return;
+                //会話をしているキャラだけアクティブに
+                for (var i = 0; i < _charactor.Length; i++)
+                {
+                    _charactor[i].isTalk = id == i;
+                }
+
+                fontTransition = 0;
+                isKeyWait = true;
+                return;
+            }
+            case "sound":
+                var audioName = lines[++argCnt];
+                if (isDryRun == false)
+                {
+                    AudioManager.Instance.Play(audioName);
+                }
+
+                return;
+            case "visible":
+            {
+                int id = int.Parse(lines[++argCnt]);
+                _charactor[id].isVisible = lines[++argCnt].Equals("1");
+                return;
+            }
+            case "wait":
+                isKeyWait = true;
+                return;
+            //アホっぽいけど、対策しておく
+            case "[end]":
+            case "[init]":
+            case "[main]":
+                return;
+            default:
+                //ここまで来るということは、コマンドが存在しなかった
+                errorMessage += "そんなコマンドはありません:" + lines[0] + "\n";
+                break;
         }
-
-        if (lines[0].Equals("sound"))
-        {
-            AudioManager.Instance.Play(lines[++argCnt]);
-            return;
-        }
-
-        if (lines[0].Equals("visible"))
-        {
-            int id = int.Parse(lines[++argCnt]);
-            _charactor[id].isVisible = lines[++argCnt].Equals("1");
-            return;
-        }
-
-        if (lines[0].Equals("wait"))
-        {
-            isKeyWait = true;
-            return;
-        }
-
-        //アホっぽいけど、対策しておく
-        if (lines[0].Equals("[end]"))
-        {
-            return;
-        }
-
-        if (lines[0].Equals("[init]"))
-        {
-            return;
-        }
-
-        if (lines[0].Equals("[main]"))
-        {
-            return;
-        }
-
-        //ここまで来るということは、コマンドが存在しなかった
-        errorMessage += "そんなコマンドはありません:" + lines[0] + "\n";
     }
 
     public int LoadPage(string talkScript)
@@ -178,11 +157,11 @@ public class TalkScript : MonoBehaviour
         {
             try
             {
-                CmdProc(cmd[i]);
+                CmdProc(cmd[i], true);
             }
             catch (Exception e)
             {
-                errorMessage += "i" + i + " :" + cmd[i] + "\n";
+                errorMessage += "i" + i + " :" + cmd[i] + "\n" + e.Message;
             }
         }
 
@@ -230,7 +209,7 @@ public class TalkScript : MonoBehaviour
             //トークが全て表示されていたら
             if (isKeyWait)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
                 {
                     isKeyWait = false;
                     CmdProc(cmd[cmdIndex++]);
@@ -250,7 +229,7 @@ public class TalkScript : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
                 //まだメッセージが出切ってないので、全メッセージ表示
                 message_cnt = message.Length;
@@ -270,14 +249,11 @@ public class TalkScript : MonoBehaviour
         }
     }
 
-    public static async UniTask TalkSceneLoadAsync(string text)
+    public async UniTask TalkSceneLoadAsync(string text, CancellationToken ct)
     {
-        var ts = FindObjectOfType<TalkScript>();
-        if (ts)
-        {
-            ts.talkScriptStr = text;
-        }
-
-        await ts.WaitTalkEnd;
+        UIFader.Show(true);
+        Create(text);
+        await WaitTalkEnd.WithCancellation(ct);
+        UIFader.Show(false);
     }
 }

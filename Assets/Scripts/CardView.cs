@@ -1,5 +1,6 @@
 using System;
-using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using InfinitePorker.Logic;
 using KszUtil;
@@ -59,59 +60,48 @@ public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
         _presetSprite = sprite;
     }
 
-    // --- Open / Close (コルーチンベース) ---
+    // --- Open / Close (UniTask) ---
 
-    public Coroutine PlayOpen()
+    public async UniTask PlayOpenAsync(CancellationToken ct = default)
     {
-        if (IsFlipping || IsOpen.Value) return null;
+        if (IsFlipping || IsOpen.Value) return;
         _spriteRenderer.sprite = _presetSprite != null ? _presetSprite : _porkerSetting.CardSprites.RandomAt();
-        return StartCoroutine(FlipCoroutine(new Vector3(0f, 0f, 180f), true));
+        await FlipAsync(new Vector3(0f, 0f, 180f), true, ct);
     }
 
-    public Coroutine PlayClose()
+    public async UniTask PlayCloseAsync(CancellationToken ct = default)
     {
-        if (IsFlipping || !IsOpen.Value) return null;
-        return StartCoroutine(FlipCoroutine(Vector3.zero, false));
+        if (IsFlipping || !IsOpen.Value) return;
+        await FlipAsync(Vector3.zero, false, ct);
     }
 
-    private IEnumerator FlipCoroutine(Vector3 targetRotation, bool openState)
+    private async UniTask FlipAsync(Vector3 targetRotation, bool openState, CancellationToken ct)
     {
         IsFlipping = true;
 
-        var startPos = _baseLocalPos;
         var liftPos = _baseLocalPos + Vector3.up * _flipLiftHeight;
-        var startRot = _cardParent.localEulerAngles;
 
         // 持ち上げ
-        yield return LerpCoroutine(_flipLiftDuration,
-            t => _cardParent.localPosition = Vector3.Lerp(startPos, liftPos, EaseOutQuad(t)));
+        await _cardParent.DOLocalMove(liftPos, _flipLiftDuration)
+            .SetEase(Ease.OutQuad)
+            .SetLink(gameObject)
+            .ToUniTask(cancellationToken: ct);
 
         // 回転
-        yield return LerpCoroutine(_flipDuration,
-            t => _cardParent.localEulerAngles = Vector3.Lerp(startRot, targetRotation, t));
+        await _cardParent.DOLocalRotate(targetRotation, _flipDuration)
+            .SetEase(_flipEase)
+            .SetLink(gameObject)
+            .ToUniTask(cancellationToken: ct);
 
         // 下ろす
-        yield return LerpCoroutine(_flipLiftDuration,
-            t => _cardParent.localPosition = Vector3.Lerp(liftPos, startPos, EaseInQuad(t)));
+        await _cardParent.DOLocalMove(_baseLocalPos, _flipLiftDuration)
+            .SetEase(Ease.InQuad)
+            .SetLink(gameObject)
+            .ToUniTask(cancellationToken: ct);
 
         IsOpen.Value = openState;
         IsFlipping = false;
     }
-
-    private static IEnumerator LerpCoroutine(float duration, Action<float> onUpdate)
-    {
-        var elapsed = 0f;
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            onUpdate(Mathf.Clamp01(elapsed / duration));
-            yield return null;
-        }
-        onUpdate(1f);
-    }
-
-    private static float EaseOutQuad(float t) => 1f - (1f - t) * (1f - t);
-    private static float EaseInQuad(float t) => t * t;
 
     // --- Select / Deselect ---
 

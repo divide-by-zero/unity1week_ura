@@ -48,3 +48,5 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
+  _audioSettings: {fileID: 11400000, guid: d5fd4e6a35e5b446ba6104b8ee24f72e, type: 2}
+  _porkerSetting: {fileID: 11400000, guid: e313910935e354845b583b2d95ba7950, type: 2}

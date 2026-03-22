@@ -9,9 +9,11 @@ using VContainer;
 
 public abstract class PhaseSceneBase : MonoBehaviour
 {
-    [SerializeField] private CardGameScene _cardGameScene;
+    [SerializeField] protected CardGameScene _cardGameScene;
     [SerializeField] protected TextAsset _talkText;
-    [SerializeField] private TextAsset _gameoverText;
+    [SerializeField] protected TextAsset _gameoverText;
+    [SerializeField] protected TextAsset _gameClearText;
+
     [SerializeField] protected TalkScript _talkScript;
     [SerializeField] private GamePhase _clearedPhase;
     [SerializeField] protected string _nextScene;
@@ -20,7 +22,6 @@ public abstract class PhaseSceneBase : MonoBehaviour
 
     protected CardGameScene CardGameScene => _cardGameScene;
     protected TalkScript TalkScript => _talkScript;
-    protected TextAsset GameoverText => _gameoverText;
 
     private void Start()
     {
@@ -65,23 +66,26 @@ public abstract class PhaseSceneBase : MonoBehaviour
 
         if (cleared)
         {
-            AudioManager.Instance.Play(AudioEnum.GameClear);
-            _chapterProgress.UpdateProgress(_clearedPhase);
-            KszSceneManager.Instance.LoadAsync(_nextScene).Forget();
+            await OnGameClearAsync(_gameClearText.text, _nextScene, ct);
         }
         else
         {
-            await OnGameOverAsync(ct);
-            KszSceneManager.Instance.LoadAsync("Title").Forget();
+            await OnGameOverAsync(_gameoverText.text, "Title", ct);
         }
     }
 
-    protected virtual async UniTask OnGameOverAsync(CancellationToken ct)
+    protected async UniTask OnGameClearAsync(string talkText, string nextScene, CancellationToken ct)
+    {
+        AudioManager.Instance.Play(AudioEnum.GameClear);
+        _chapterProgress.UpdateProgress(_clearedPhase);
+        await _talkScript.TalkSceneLoadAsync(talkText, ct);
+        KszSceneManager.Instance.LoadAsync(nextScene).Forget();
+    }
+
+    protected async UniTask OnGameOverAsync(string talkText, string nextScene, CancellationToken ct)
     {
         AudioManager.Instance.Play(AudioEnum.GameOver);
-        if (_gameoverText != null)
-        {
-            await _talkScript.TalkSceneLoadAsync(_gameoverText.text, ct);
-        }
+        await _talkScript.TalkSceneLoadAsync(talkText, ct);
+        KszSceneManager.Instance.LoadAsync(nextScene).Forget();
     }
 }

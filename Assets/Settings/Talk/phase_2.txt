@@ -23,7 +23,7 @@ talk,2,アキラの通信が割り込んでくる。
 
 sound,Select
 sprite,1,akira_0_serious
-talk,1,「リナ、聞こえる？　まずい——相手がスクランブルを強化した」
+talk,1,「まずい——相手がスクランブルを強化した」
 
 visible,0,1
 sprite,0,rina_surprise
@@ -56,7 +56,7 @@ sound,Select
 talk,0,「わかった。最初の数枚で法則を掴む——それしかないよね」
 
 sprite,1,akira_0_normal
-talk,1,「ええ。今度こそ本当に通信を切るわ。……頑張りなさい」
+talk,1,「ええ。　次の試合が始まる。通信を切るわ。……頑張りなさい」
 
 talk,2,通信が途絶え、静寂がテーブルを包む。
 

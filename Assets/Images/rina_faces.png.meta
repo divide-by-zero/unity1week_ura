@@ -166,10 +166,10 @@ TextureImporter:
       name: rina_faces_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 983
-        width: 425
-        height: 407
+        x: 12
+        y: 493
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       name: rina_faces_1
       rect:
         serializedVersion: 2
-        x: 509
-        y: 983
-        width: 422
-        height: 409
+        x: 259
+        y: 493
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,10 +210,10 @@ TextureImporter:
       name: rina_faces_2
       rect:
         serializedVersion: 2
-        x: 995
-        y: 983
-        width: 398
-        height: 406
+        x: 506
+        y: 493
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,10 +232,10 @@ TextureImporter:
       name: rina_faces_3
       rect:
         serializedVersion: 2
-        x: 18
-        y: 495
-        width: 429
-        height: 435
+        x: 12
+        y: 253
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,10 +254,10 @@ TextureImporter:
       name: rina_faces_4
       rect:
         serializedVersion: 2
-        x: 507
-        y: 493
-        width: 427
-        height: 435
+        x: 259
+        y: 253
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,10 +276,10 @@ TextureImporter:
       name: rina_faces_5
       rect:
         serializedVersion: 2
-        x: 981
-        y: 493
-        width: 429
-        height: 433
+        x: 506
+        y: 253
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,19 +298,19 @@ TextureImporter:
       name: rina_faces_6
       rect:
         serializedVersion: 2
-        x: 33
-        y: 12
-        width: 420
-        height: 417
+        x: 12
+        y: 13
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f491d4bcb4037e60800000000000000
+      spriteID: 47ffa5da8e3174396a0e2a646daa850a
       internalID: 7958710175027795184
       vertices: []
       indices: 
@@ -320,19 +320,19 @@ TextureImporter:
       name: rina_faces_7
       rect:
         serializedVersion: 2
-        x: 511
-        y: 14
-        width: 423
-        height: 417
+        x: 259
+        y: 13
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0388eed933daf2790800000000000000
+      spriteID: a50551b59912248a9ab526596dfc4e4a
       internalID: -7552627612872439760
       vertices: []
       indices: 
@@ -342,19 +342,19 @@ TextureImporter:
       name: rina_faces_8
       rect:
         serializedVersion: 2
-        x: 987
-        y: 14
-        width: 423
-        height: 415
+        x: 506
+        y: 13
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0430088f0c8cb0840800000000000000
+      spriteID: 6918e025b40b3444eb1592ed36ba72ec
       internalID: 5191463726603043648
       vertices: []
       indices: 
@@ -372,7 +372,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":200.0,"y":200.0},"gridSpriteOffset":{"x":12.0,"y":10.0},"gridSpritePadding":{"x":47.0,"y":40.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       rina_faces_0: 6399695774439230520
       rina_faces_1: 8616790468420879075

@@ -1,0 +1,36 @@
+//プレイヤーID 0 はリナ（左） 1はアキラ（右） 2はナレーション（中央）
+//画像差し替え sprite,プレイヤーID,立ち絵の名前
+//キャラクターを表示 visible,プレイヤーID,0 or 1
+//トーク表示 talk,プレイヤーID,会話内容
+//音を鳴らす sound,音の名前
+
+[init]
+fontspeed,2
+sprite,0,rina_smile
+sprite,1,akira_1
+visible,0,0
+visible,1,0
+visible,2,0
+
+[main]
+visible,2,0
+talk,2,第3戦——リナの勝利。
+
+talk,2,成金の男は信じられないという顔で、しばらく盤面を見つめていた。
+
+talk,2,「……バカな。レンズもなしに、なぜ……」
+
+visible,0,1
+sound,Select
+sprite,0,rina_smile
+talk,0,「残念ね——あたしには、最高の相棒がいるのよ」
+
+visible,1,1
+sprite,1,akira_1
+talk,2,隣の席に目をやる。狐のお面だけが、静かにそこに置かれている。
+
+sprite,0,rina_normal
+talk,0,「……見てた？　アキラ」
+
+talk,0,「あんたがくれたもの、全部使って勝ったよ」
+[end]

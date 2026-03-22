@@ -166,10 +166,10 @@ TextureImporter:
       name: akira_faces2_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 1363
-        width: 584
-        height: 552
+        x: 18
+        y: 681
+        width: 298
+        height: 276
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       name: akira_faces2_1
       rect:
         serializedVersion: 2
-        x: 717
-        y: 1366
-        width: 573
-        height: 554
+        x: 360
+        y: 681
+        width: 287
+        height: 280
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,10 +210,10 @@ TextureImporter:
       name: akira_faces2_2
       rect:
         serializedVersion: 2
-        x: 1377
-        y: 1366
-        width: 560
-        height: 552
+        x: 681
+        y: 681
+        width: 287
+        height: 282
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,10 +232,10 @@ TextureImporter:
       name: akira_faces2_3
       rect:
         serializedVersion: 2
-        x: 30
-        y: 679
-        width: 592
-        height: 595
+        x: 12
+        y: 343
+        width: 308
+        height: 300
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,10 +254,10 @@ TextureImporter:
       name: akira_faces2_4
       rect:
         serializedVersion: 2
-        x: 709
-        y: 692
-        width: 581
-        height: 585
+        x: 352
+        y: 339
+        width: 299
+        height: 301
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,10 +276,10 @@ TextureImporter:
       name: akira_faces2_5
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 687
-        width: 549
-        height: 598
+        x: 688
+        y: 341
+        width: 285
+        height: 293
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -298,10 +298,10 @@ TextureImporter:
       name: akira_faces2_6
       rect:
         serializedVersion: 2
-        x: 22
-        y: 22
-        width: 614
-        height: 578
+        x: 9
+        y: 18
+        width: 306
+        height: 285
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -320,10 +320,10 @@ TextureImporter:
       name: akira_faces2_7
       rect:
         serializedVersion: 2
-        x: 720
-        y: 19
-        width: 576
-        height: 571
+        x: 359
+        y: 10
+        width: 287
+        height: 293
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -342,10 +342,10 @@ TextureImporter:
       name: akira_faces2_8
       rect:
         serializedVersion: 2
-        x: 1379
-        y: 24
-        width: 555
-        height: 571
+        x: 677
+        y: 0
+        width: 301
+        height: 311
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -372,7 +372,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       akira_faces2_0: 2594552125995473290
       akira_faces2_1: 1162516803179220655

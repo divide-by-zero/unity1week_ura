@@ -354,7 +354,7 @@ MonoBehaviour:
   _selectOffsetY: 0.15
   _selectDuration: 0.2
   _selectEase: 6
-  _hoverScale: 1.08
+  _hoverScale: 1.2
   _hoverDuration: 0.15
   _hoverEase: 6
 --- !u!1 &6518253809313606387
@@ -640,7 +640,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -293574064648097353, guid: fd2380335a5a6493eb94afdf1f833689, type: 3}
+  m_Sprite: {fileID: 6088876058402489799, guid: 3edc3f87148c44cfe947adab254d36a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

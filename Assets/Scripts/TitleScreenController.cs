@@ -71,11 +71,7 @@ public class TitleScreenController : MonoBehaviour
 
     private void LoadChapter(ButtonInfo info)
     {
-        if (info.isSpecialContinue)
-        {
-            _chapterProgress.IsSpecialContinue = true;
-        }
-
+        _chapterProgress.IsSpecialContinue = info.isSpecialContinue;
         KszSceneManager.Instance.LoadAsync(info.SceneName);
     }
 

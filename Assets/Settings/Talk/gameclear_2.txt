@@ -1,0 +1,43 @@
+//プレイヤーID 0 はリナ（左） 1はアキラ（右） 2はナレーション（中央）
+//画像差し替え sprite,プレイヤーID,立ち絵の名前
+//キャラクターを表示 visible,プレイヤーID,0 or 1
+//トーク表示 talk,プレイヤーID,会話内容
+//音を鳴らす sound,音の名前
+
+[init]
+fontspeed,2
+sprite,0,rina_smile
+sprite,1,akira_0_normal
+visible,0,0
+visible,1,0
+visible,2,0
+
+[main]
+visible,2,0
+talk,2,第2戦——リナの勝利。
+
+talk,2,スクランブルを強化されてなお、リナはパターンを見抜いた。
+
+visible,0,1
+sound,Select
+talk,0,「……読めた。全部読めたわよ、あんたのスクランブル」
+
+talk,2,成金の男の顔が、にわかに歪む。
+
+visible,1,1
+sprite,1,akira_0_normal
+talk,1,「……やるじゃない」
+
+sprite,0,rina_smile
+talk,0,「でしょ？　私の洞察力、なかなかのもんでしょ！」
+
+sprite,1,akira_0_serious
+talk,1,「……調子に乗らないの。相手の顔、見なさい」
+
+talk,2,男の表情から余裕は完全に消えていた。代わりに浮かんでいるのは——冷たい怒りだった。
+
+sprite,0,rina_normal
+talk,0,「……なんか、嫌な予感がする」
+
+talk,1,「ええ。追い詰められた相手が一番危険よ——気を抜かないで」
+[end]

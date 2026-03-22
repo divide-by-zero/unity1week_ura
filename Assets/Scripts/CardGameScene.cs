@@ -200,8 +200,13 @@ public class CardGameScene : MonoBehaviour
                 AudioManager.Instance.Play(AudioEnum.Success);
                 if (_successImage != null)
                 {
-                    _successImage.gameObject.SetActive(true);
-                    _successImage.DOFillAmount(1f, 0.5f).From(0f).OnComplete(() => _successImage.gameObject.SetActive(false));
+                    UniTask.Void(async () =>
+                    {
+                        _successImage.gameObject.SetActive(true);
+                        await _successImage.DOFillAmount(1f, 0.5f).From(0f).ToUniTask(cancellationToken: ct);
+                        await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: ct);
+                        _successImage.gameObject.SetActive(false);
+                    });
                 }
 
                 UpdateStatusText();

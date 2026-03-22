@@ -1,0 +1,35 @@
+//プレイヤーID 0 はリナ（左） 1はアキラ（右） 2はナレーション（中央）
+//画像差し替え sprite,プレイヤーID,立ち絵の名前
+//キャラクターを表示 visible,プレイヤーID,0 or 1
+//トーク表示 talk,プレイヤーID,会話内容
+//音を鳴らす sound,音の名前
+
+[init]
+fontspeed,2
+sprite,0,rina_smile
+sprite,1,akira_0_normal
+visible,0,0
+visible,1,0
+visible,2,0
+
+[main]
+visible,2,0
+visible,0,1
+sound,Select
+talk,0,「やった……やったわ！　勝った！」
+
+talk,2,成金の男の顔から、初めて余裕が消えた。
+
+visible,1,1
+sprite,1,akira_0_serious
+talk,1,「……ふん。まあ、初戦はこんなものよ」
+
+sprite,0,rina_surprise
+talk,0,「え、もうちょっと褒めてくれてもよくない！？」
+
+sprite,1,akira_0_normal
+talk,1,「このまますんなり勝たせてくれるといいのだけれど……」
+
+sprite,0,rina_smile
+talk,0,「……上等。次も勝ってやるわよ！」
+[end]

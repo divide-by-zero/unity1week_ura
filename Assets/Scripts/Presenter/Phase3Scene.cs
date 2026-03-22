@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using InfinitePorker.Enums;
@@ -72,12 +73,13 @@ public class Phase3Scene : PhaseSceneBase
         {
             if (isBackdoorSuccess)
             {
-                KszSceneManager.Instance.LoadAsync(_nextScene).Forget();
+                //正式クリア！
+                await OnGameClearAsync(_gameClearText.text, _nextScene, ct);
             }
             else
             {
                 //クリアしてるけど、アキラが不幸なバッドエンド
-                await _talkScript.TalkSceneLoadAsync(_backdoorNotSuccessButGameClearText.text, ct);
+                await OnGameClearAsync(_backdoorNotSuccessButGameClearText.text, "Title", ct);
             }
         }
         else
@@ -85,23 +87,20 @@ public class Phase3Scene : PhaseSceneBase
             if (isBackdoorSuccess)
             {
                 //バックドア成功してるけど、ゲームオーバー
-                await _talkScript.TalkSceneLoadAsync(_backdoorSuccessButGameOverText.text, ct);
+                await OnGameOverAsync(_backdoorSuccessButGameOverText.text, "Title", ct);
             }
             else
             {
-                await OnGameOverAsync(ct);
+                await OnGameOverAsync(_gameoverText.text, "Title", ct);
             }
-
-            KszSceneManager.Instance.LoadAsync("Title").Forget();
         }
     }
 
     private void VisibleHologram()
     {
         _isHologramOn = true;
-        _hintText.gameObject.SetActive(true);
+        _hintText.gameObject.SetActive(false);
     }
-
 
     // Phase3: 自身 + 上下の隣接カードの数値合計（イカサマ封じ＝暗号が弱い）
     protected override string GetHologramText(CardView view)
@@ -114,24 +113,23 @@ public class Phase3Scene : PhaseSceneBase
         if (_isHologramOn == false) return;
         if (view == null)
         {
-            _hologramText.text = "";
+            _hologramText.text = ".  .<br>^";
+            _hintText.text = "";
             return;
         }
 
-
         var sum = view.CardData.Num;
 
-        // 上, 下のみ
-        int[] dz = { -1, 1 };
-
-        for (var i = 0; i < dz.Length; i++)
-        {
-            var neighbor = CardGameScene.GetNeighbor(view, 0, dz[i]);
-            if (neighbor != null)
-            {
-                sum += neighbor.CardData.Num;
-            }
-        }
+        // 上, 下のカードの数値も足す
+        // int[] dz = { 1, -1 };
+        // for (var i = 0; i < dz.Length; i++)
+        // {
+        //     var neighbor = CardGameScene.GetNeighbor(view, 0, dz[i]);
+        //     if (neighbor != null)
+        //     {
+        //         sum += neighbor.CardData.Num;
+        //     }
+        // }
 
         _hologramText.text = $"{sum}";
     }

@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc50ffab2a700c42b57b71394037fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game::TalkCharactor
-  waitpos: {x: -25, y: -25}
-  activePos: {x: 0, y: 0}
+  waitpos: {x: 0, y: 0}
+  activePos: {x: 15, y: 15}
   isTalk: 0
   isVisible: 0
   _charaImage: {fileID: 3132667567252960717}
@@ -188,7 +188,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 56b469b6d0151468d99fda6043a063ad, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -844,7 +844,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 0ebd29d9df1a940eca46ecdf3e882300, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -901,8 +901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc50ffab2a700c42b57b71394037fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game::TalkCharactor
-  waitpos: {x: 25, y: -25}
-  activePos: {x: 0, y: 0}
+  waitpos: {x: 0, y: 0}
+  activePos: {x: -15, y: 15}
   isTalk: 0
   isVisible: 0
   _charaImage: {fileID: 1151319689213359505}

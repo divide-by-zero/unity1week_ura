@@ -1323,7 +1323,7 @@ MonoBehaviour:
   _rows: 3
   _cardSpacingX: 3
   _cardSpacingZ: 4
-  _mismatchDelay: 1.5
+  _mismatchDelay: 0.5
 --- !u!4 &1151662116
 Transform:
   m_ObjectHideFlags: 0
@@ -1349,14 +1349,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1151662113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 932dc1a87e2704e9683c81b1f9e9803a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a294361dd77a49049d54009aab02058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
   _cardGameScene: {fileID: 1151662115}
   _talkText: {fileID: 4900000, guid: 228070aa3c4cd4183991c578c3c42da1, type: 3}
   _gameoverText: {fileID: 4900000, guid: 1098ca0e351494ef9aec3a94254dcae9, type: 3}
   _talkScript: {fileID: 542694381}
-  _clearedPhase: 0
+  _clearedPhase: 32
+  _nextScene: Outro
 --- !u!1 &1213920980
 GameObject:
   m_ObjectHideFlags: 0

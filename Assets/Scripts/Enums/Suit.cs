@@ -5,10 +5,10 @@ namespace InfinitePorker.Enums
 {
     public enum Suit
     {
-        Clubs, // クローバー
-        Diamonds, // ダイヤ
-        Hearts, // ハート
-        Spades // スペード
+        Spades = 1, // スペード
+        Hearts = 2, // ハート
+        Diamonds = 3, // ダイヤ
+        Clubs = 4, // クローバー
     }
 
     [Flags]

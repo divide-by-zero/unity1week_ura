@@ -40,8 +40,14 @@ public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
     private readonly Subject<CardView> _onClickSubject = new();
     public IObservable<CardView> OnClickAsObservable() => _onClickSubject;
 
+    private readonly Subject<CardView> _onHoverEnterSubject = new();
+    private readonly Subject<CardView> _onHoverExitSubject = new();
+    public IObservable<CardView> OnHoverEnterAsObservable() => _onHoverEnterSubject;
+    public IObservable<CardView> OnHoverExitAsObservable() => _onHoverExitSubject;
+
     public bool IsClickable { get; set; } = true;
     public bool IsFlipping { get; private set; }
+    public CardGameScene.CardData CardData { get; set; }
 
     private Sprite _presetSprite;
 
@@ -51,8 +57,12 @@ public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
 
     private void Start()
     {
-        _text.text = "" + "0123456789ABCDEF".RandomAt() + "0123456789ABCDEF".RandomAt();
         _baseLocalPos = _cardParent.localPosition;
+    }
+
+    public void SetHologramText(string text)
+    {
+        _text.text = text;
     }
 
     public void SetCardSprite(Sprite sprite)
@@ -125,7 +135,7 @@ public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
 
     public void OnHoverEnter()
     {
-        HologramOn();
+        _onHoverEnterSubject.OnNext(this);
         _hoverTween?.Kill();
         _hoverTween = transform.DOScale(_hoverScale, _hoverDuration)
             .SetEase(_hoverEase)
@@ -134,7 +144,7 @@ public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
 
     public void OnHoverExit()
     {
-        HologramOff();
+        _onHoverExitSubject.OnNext(this);
         _hoverTween?.Kill();
         _hoverTween = transform.DOScale(1f, _hoverDuration)
             .SetEase(_hoverEase)

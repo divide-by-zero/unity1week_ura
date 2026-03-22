@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using InfinitePorker.Enums;
 using InfinitePorker.Logic;
 using KszUtil.Utilities;
 using TMPro;
@@ -10,10 +11,15 @@ using VContainer;
 
 public class CardGameScene : MonoBehaviour
 {
-    private struct CardData
+    // カードの数字は 1〜9、スートは Suit enum（1〜4）
+    public const int MinCardNum = 1;
+    public const int MaxCardNum = 9;
+    public const int SuitCount = 4;
+
+    public struct CardData
     {
-        public int Num;
-        public int Suit;
+        public int Num; // 1〜9
+        public Suit Suit; // Spades=1, Hearts=2, Diamonds=3, Clubs=4
     }
 
     [Header("参照")] [SerializeField] private GameObject _cardPrefab;
@@ -37,17 +43,16 @@ public class CardGameScene : MonoBehaviour
     private int _totalPairs;
 
     private int _lastClickedIndex = -1;
-    private readonly CompositeDisposable _clickSubscriptions = new();
+
+    private readonly Subject<CardView> _onHoverEnter = new();
+    private readonly Subject<CardView> _onHoverExit = new();
+    public IObservable<CardView> OnHoverEnterAsObservable() => _onHoverEnter;
+    public IObservable<CardView> OnHoverExitAsObservable() => _onHoverExit;
 
     private void Start()
     {
         InitializeGrid();
         SubscribeToAllCardClicks();
-    }
-
-    private void OnDestroy()
-    {
-        _clickSubscriptions.Dispose();
     }
 
     private void InitializeGrid()
@@ -56,15 +61,12 @@ public class CardGameScene : MonoBehaviour
         _totalPairs = totalCards / 2;
 
         _cards = new CardData[totalCards];
-        const int suitCount = 4;
 
         for (var i = 0; i < _totalPairs; i++)
         {
-            var suitA = UnityEngine.Random.Range(0, suitCount);
-            var suitB = (suitA + UnityEngine.Random.Range(1, suitCount)) % suitCount;
-
-            _cards[i * 2] = new CardData { Num = i, Suit = suitA };
-            _cards[i * 2 + 1] = new CardData { Num = i, Suit = suitB };
+            var num = MinCardNum + i;
+            _cards[i * 2] = new CardData { Num = num, Suit = Suit.Hearts };
+            _cards[i * 2 + 1] = new CardData { Num = num, Suit = Suit.Spades };
         }
 
         Shuffle(_cards);
@@ -90,12 +92,34 @@ public class CardGameScene : MonoBehaviour
             var cardView = cardObj.GetComponent<CardView>();
 
             var card = _cards[i];
-            cardView.SetCardSprite(_porkerSetting.CardSprites[card.Suit * 14 + card.Num]);
+            cardView.CardData = card;
+            cardView.SetCardSprite(_porkerSetting.CardSprites[((int)card.Suit - 1) * 13 + (card.Num - MinCardNum)]);
 
             _cardViews[i] = cardView;
         }
 
         UpdateStatusText();
+    }
+
+    public int GetCardIndex(CardView view)
+    {
+        return Array.IndexOf(_cardViews, view);
+    }
+
+    public bool IsMatched(CardView view)
+    {
+        return _isMatched[GetCardIndex(view)];
+    }
+
+    public CardView GetNeighbor(CardView view, int dx, int dz)
+    {
+        var index = GetCardIndex(view);
+        var col = index % _columns;
+        var row = index / _columns;
+        var nc = col + dx;
+        var nr = row + dz;
+        if (nc < 0 || nc >= _columns || nr < 0 || nr >= _rows) return null;
+        return _cardViews[nr * _columns + nc];
     }
 
     private void SubscribeToAllCardClicks()
@@ -105,7 +129,15 @@ public class CardGameScene : MonoBehaviour
             var index = i;
             _cardViews[i].OnClickAsObservable()
                 .Subscribe(_ => _lastClickedIndex = index)
-                .AddTo(_clickSubscriptions);
+                .AddTo(this);
+
+            _cardViews[i].OnHoverEnterAsObservable()
+                .Subscribe(v => _onHoverEnter.OnNext(v))
+                .AddTo(this);
+
+            _cardViews[i].OnHoverExitAsObservable()
+                .Subscribe(v => _onHoverExit.OnNext(v))
+                .AddTo(this);
         }
     }
 
@@ -144,8 +176,6 @@ public class CardGameScene : MonoBehaviour
                 _isMatched[secondIndex] = true;
                 _matchedPairs++;
 
-                _cardViews[firstIndex].HologramOn();
-                _cardViews[secondIndex].HologramOn();
                 UpdateStatusText();
             }
             else

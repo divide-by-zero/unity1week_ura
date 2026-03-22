@@ -10,6 +10,12 @@ using VContainer;
 
 public class CardGameScene : MonoBehaviour
 {
+    private struct CardData
+    {
+        public int Num;
+        public int Suit;
+    }
+
     [Header("参照")] [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private PorkerSetting _porkerSetting;
     [SerializeField] private TMP_Text _statusText;
@@ -24,7 +30,7 @@ public class CardGameScene : MonoBehaviour
     [Inject] AudioManager _audioManager;
 
     private CardView[] _cardViews;
-    private int[] _cardPairIds;
+    private CardData[] _cards;
     private bool[] _isMatched;
     private int _turnCount;
     private int _matchedPairs;
@@ -49,14 +55,19 @@ public class CardGameScene : MonoBehaviour
         var totalCards = _columns * _rows;
         _totalPairs = totalCards / 2;
 
-        _cardPairIds = new int[totalCards];
+        _cards = new CardData[totalCards];
+        const int suitCount = 4;
+
         for (var i = 0; i < _totalPairs; i++)
         {
-            _cardPairIds[i * 2] = i;
-            _cardPairIds[i * 2 + 1] = i;
+            var suitA = UnityEngine.Random.Range(0, suitCount);
+            var suitB = (suitA + UnityEngine.Random.Range(1, suitCount)) % suitCount;
+
+            _cards[i * 2] = new CardData { Num = i, Suit = suitA };
+            _cards[i * 2 + 1] = new CardData { Num = i, Suit = suitB };
         }
 
-        Shuffle(_cardPairIds);
+        Shuffle(_cards);
 
         _cardViews = new CardView[totalCards];
         _isMatched = new bool[totalCards];
@@ -78,8 +89,8 @@ public class CardGameScene : MonoBehaviour
             var cardObj = Instantiate(_cardPrefab, pos, Quaternion.identity, transform);
             var cardView = cardObj.GetComponent<CardView>();
 
-            var spriteIndex = _cardPairIds[i];
-            cardView.SetCardSprite(_porkerSetting.CardSprites[spriteIndex]);
+            var card = _cards[i];
+            cardView.SetCardSprite(_porkerSetting.CardSprites[card.Suit * 14 + card.Num]);
 
             _cardViews[i] = cardView;
         }
@@ -126,8 +137,8 @@ public class CardGameScene : MonoBehaviour
             _turnCount++;
             UpdateStatusText();
 
-            // マッチ判定
-            if (_cardPairIds[firstIndex] == _cardPairIds[secondIndex])
+            // マッチ判定（数字が同じならペア成立）
+            if (_cards[firstIndex].Num == _cards[secondIndex].Num)
             {
                 _isMatched[firstIndex] = true;
                 _isMatched[secondIndex] = true;

@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using KszUtil;
+using KszUtil.UI;
 using KszUtil.Utilities;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TalkScript : MonoBehaviour
 {
     private List<string> cmd = new List<string>();
     [SerializeField] private SerializableDictionary<string, Sprite> spriteDict = new SerializableDictionary<string, Sprite>();
+    [SerializeField] private LongHoldButton _skipButton;
+
     private int cmdIndex, mainIndex, endIndex;
     private bool isKeyWait;
     private bool isEnd; //会話終了
@@ -25,6 +30,7 @@ public class TalkScript : MonoBehaviour
     public string message;
     public string errorMessage = "";
     private int message_cnt;
+    private int totalVisibleCharacters;
     private float font_x, font_y;
     private float font_size;
     private int fontTransition;
@@ -32,6 +38,11 @@ public class TalkScript : MonoBehaviour
 
     public TMP_Text _screenText;
     public TalkCharactor[] _charactor;
+
+    public void Start()
+    {
+        _skipButton.OnHoldButtonAsObservable().Subscribe(_ => ToggleSkip()).AddTo(this);
+    }
 
     public void ToggleSkip()
     {
@@ -73,6 +84,10 @@ public class TalkScript : MonoBehaviour
                 int id = int.Parse(lines[++argCnt]);
                 message = lines[++argCnt];
                 message_cnt = 0;
+                _screenText.text = message;
+                _screenText.ForceMeshUpdate();
+                totalVisibleCharacters = _screenText.textInfo.characterCount;
+                _screenText.maxVisibleCharacters = 0;
 
                 //会話をしているキャラだけアクティブに
                 for (var i = 0; i < _charactor.Length; i++)
@@ -190,6 +205,7 @@ public class TalkScript : MonoBehaviour
         isSkip = false;
         message = "";
         message_cnt = 0;
+        totalVisibleCharacters = 0;
         fontTransition = 0;
 
         for (i = 0; i < _charactor.Length; i++)
@@ -204,8 +220,7 @@ public class TalkScript : MonoBehaviour
         if (isSkip)
         {
             // スキップモード：テキスト即表示＋自動進行
-            message_cnt = message.Length;
-            _screenText.text = message;
+            message_cnt = totalVisibleCharacters;
 
             if (isKeyWait)
             {
@@ -232,13 +247,13 @@ public class TalkScript : MonoBehaviour
         if (fontTransition++ > fontTransitionSpeed)
         {
             fontTransition = 0;
-            if (++message_cnt > message.Length)
+            if (++message_cnt > totalVisibleCharacters)
             {
-                message_cnt = message.Length;
+                message_cnt = totalVisibleCharacters;
             }
         }
 
-        if (message_cnt == message.Length)
+        if (message_cnt >= totalVisibleCharacters)
         {
             //トークが全て表示されていたら
             if (isKeyWait)
@@ -266,7 +281,7 @@ public class TalkScript : MonoBehaviour
             if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
                 //まだメッセージが出切ってないので、全メッセージ表示
-                message_cnt = message.Length;
+                message_cnt = totalVisibleCharacters;
             }
 
             //まだ会話中なので、会話しているキャラを上下させる
@@ -276,7 +291,7 @@ public class TalkScript : MonoBehaviour
             }
         }
 
-        _screenText.text = message.Substring(0, message_cnt);
+        _screenText.maxVisibleCharacters = message_cnt;
 
         if (isEnd)
         {

@@ -6,8 +6,8 @@
 
 [init]
 fontspeed,2
-sprite,0,rina
-sprite,1,akira
+sprite,0,rina_normal
+sprite,1,akira_0_normal
 visible,0,0
 visible,1,0
 visible,2,0
@@ -27,10 +27,12 @@ talk,2,「そのお面、取ってもらえますかねえ？」
 talk,2,アキラが身を引く間もなく——男はお面を剥ぎ取った。
 
 sound,Swap
+sprite,1,akira_2_sad
 talk,2,お面の下から現れた顔を見て、男は笑った。
 
 talk,2,「おやおや——アキラお嬢様じゃないですか。まさかオーナーの娘御自らが、うちの客に肩入れとは」
 
+sprite,0,rina_surprise
 talk,0,「……お嬢様？　オーナーの娘……？」
 
 talk,2,アキラは目を伏せたまま、唇を噛んだ。
@@ -61,17 +63,18 @@ talk,1,「…………<size=4>絶対に助けに戻る</size>」
 
 talk,2,アキラはそのまま振り返ることなく、部屋を飛び出していった。
 
+sprite,1,akira_1 //お面だけ
+
 talk,2,VIPルームに残されたのは、リナと、カードテーブルだけ。
 
 talk,2,レンズはない。通信もない。頼れる相棒も、もういない。
 
+sprite,0,rina_sad
 talk,0,「…………」
 
 talk,2,リナは静かにテーブルの前に立った。
 
-talk,0,「——運に身を任せる？　冗談じゃない」
+talk,2,——どうする？
 
-talk,0,「あいつが最後に言ったこと……無駄なはずがない」
-
-talk,2,リナはカードを見つめ直した。今度こそ、自分の目だけで。
+choice,0,運に身を任せる,アキラを信じて待つ
 [end]

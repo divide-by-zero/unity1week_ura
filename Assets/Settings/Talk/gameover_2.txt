@@ -6,8 +6,8 @@
 
 [init]
 fontspeed,2
-sprite,0,rina
-sprite,1,akira
+sprite,0,rina_sad
+sprite,1,akira_2_normal
 visible,0,0
 visible,1,0
 visible,2,0

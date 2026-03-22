@@ -6,8 +6,8 @@
 
 [init]
 fontspeed,2
-sprite,0,rina
-sprite,1,akira
+sprite,0,rina_normal
+sprite,1,akira_0_normal
 visible,0,0
 visible,1,0
 visible,2,0
@@ -23,15 +23,18 @@ visible,0,1
 talk,2,アキラから渡されたスペクトル・レンズが、カードの裏面に刻印された不可視のナノドットを、鮮やかなARで浮かび上がらせていた。
 
 sound,Select
+sprite,0,rina_surprise
 talk,0,「……見える、全部丸見えじゃない！」
 
 visible,1,1
 talk,2,隣に立つのは、狐のお面で顔を隠した少女——アキラ
 
+sprite,1,akira_0_serious
 talk,2,アキラがPCを叩き、信号を同期させる。
 
 talk,1,「落ち着きなさい。データが見えるだけじゃ、まだ何も始まってないわ」
 
+sprite,0,rina_normal
 talk,0,「え？　でもこれ、カードの情報が全部わかるってことでしょ？」
 
 talk,1,「バカ。そんな簡単な話じゃないわ。 情報が見えることと、意味を読み取ることは別よ。パターンを繋いで判断するのは、あくまでもあんたの頭——人間の仕事」
@@ -41,6 +44,7 @@ talk,0,「……つまり、私の洞察力次第ってこと？」
 sound,Swap
 talk,1,「ええ。それと——時には運もね。データだけじゃ超えられない壁は必ずある」
 
+sprite,1,akira_0_normal
 talk,2,アキラはコンソールから手を離し、一歩引いた。
 
 talk,1,「いい？　ゲームが始まったら、私はもう何も手を貸せない。通信も切る」

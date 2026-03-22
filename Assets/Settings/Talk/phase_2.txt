@@ -6,8 +6,8 @@
 
 [init]
 fontspeed,2
-sprite,0,rina
-sprite,1,akira
+sprite,0,rina_normal
+sprite,1,akira_0_normal
 visible,0,0
 visible,1,0
 visible,2,0
@@ -22,9 +22,11 @@ visible,1,1
 talk,2,アキラの通信が割り込んでくる。
 
 sound,Select
+sprite,1,akira_0_serious
 talk,1,「リナ、聞こえる？　まずい——相手がスクランブルを強化した」
 
 visible,0,1
+sprite,0,rina_surprise
 talk,0,「スクランブル？　どういうこと？」
 
 talk,1,「カードの表示パターンが書き換えられてる。ナノドットの配列が第1戦とは別物よ」
@@ -38,6 +40,7 @@ talk,1,「いいえ、データ自体は見える。でも、データの"意味
 
 talk,1,「模様の対応関係が再シャッフルされてる——どれがどのペアか、一から見極め直す必要があるわ」
 
+sprite,0,rina_sad
 talk,0,「そんな……急にハードル上がりすぎでしょ……」
 
 talk,1,「落ち着いて。一つだけ確かなことがある」
@@ -46,11 +49,13 @@ talk,1,「相手もこのカードで揃えなきゃいけない。つまり—�
 
 talk,1,「でたらめに見えても、そこにはパターンがある。相手が読めるなら、あんたにも読めるはず」
 
+sprite,0,rina_normal
 talk,0,「……ルールがある、か」
 
 sound,Select
 talk,0,「わかった。最初の数枚で法則を掴む——それしかないよね」
 
+sprite,1,akira_0_normal
 talk,1,「ええ。今度こそ本当に通信を切るわ。……頑張りなさい」
 
 talk,2,通信が途絶え、静寂がテーブルを包む。

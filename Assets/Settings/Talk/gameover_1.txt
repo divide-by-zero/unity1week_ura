@@ -6,8 +6,8 @@
 
 [init]
 fontspeed,2
-sprite,0,rina
-sprite,1,akira
+sprite,0,rina_normal
+sprite,1,akira_1
 visible,0,0
 visible,1,0
 visible,2,0
@@ -19,11 +19,13 @@ talk,2,——試合が終わった。いや、「終わっていた」と言う�
 talk,2,リナに再びターンが回ってくることは、一度もなかった。
 
 visible,0,1
+sprite,0,rina_surprise
 talk,0,「……嘘でしょ。もう終わり？　私、何もしてないのに——」
 
 talk,2,盤面には、勝つためのヒントがいくらでも転がっていた。
 talk,2,冷静に考えれば全ての情報は揃っていた。
 
+sprite,0,rina_sad
 talk,0,「わかってた……わかってたのに、私……なんで……」
 
 talk,2,リナはふと隣を見た。

@@ -6,8 +6,8 @@
 
 [init]
 fontspeed,2
-sprite,0,rina
-sprite,1,akira
+sprite,0,rina_normal
+sprite,1,akira_2_normal
 visible,0,0
 visible,1,0
 visible,2,0
@@ -25,6 +25,7 @@ talk,2,壁一面に並んだ監視カメラの映像。その一つに——VIP�
 
 talk,2,リナがカードテーブルの前に座っている。まだ、試合は続いていた。
 
+sprite,1,akira_2_sad
 talk,1,「リナ……まだ戦ってるのね」
 
 sound,Select
@@ -32,8 +33,10 @@ talk,2,アキラはコンソールを操作し、カードの盤面を拡大し�
 
 talk,2,ナノドットの配列が、アキラの目にははっきりと見える。自分が設計したシステムだ——当然、読める。
 
+sprite,1,akira_2_normal
 talk,1,「全部見える。どのカードがどのペアか、全部わかる」
 
+sprite,1,akira_2_sad
 talk,1,「……でも、これをどうやってリナに伝えるの？」
 
 talk,2,スペクトル・レンズは凍結済み。通信機器はVIPルームに置いてきた。
@@ -56,9 +59,11 @@ talk,1,「……待って」
 talk,1,「VIPルームの環境制御……照明、空調、サウンド——」
 
 sound,Select
+sprite,1,akira_2_smile
 talk,2,アキラの表情が変わった。
 
 talk,1,「そうよ。これがあるじゃない——！」
 
+sprite,1,akira_2_determined
 talk,2,アキラの指が、再びコンソールの上を走り始めた。
 [end]

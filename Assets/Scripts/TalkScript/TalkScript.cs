@@ -16,11 +16,21 @@ public class TalkScript : MonoBehaviour
     private List<string> cmd = new List<string>();
     [SerializeField] private SerializableDictionary<string, Sprite> spriteDict = new SerializableDictionary<string, Sprite>();
     [SerializeField] private LongHoldButton _skipButton;
+    [SerializeField] private UIFader _choicePanelFader;
+    [SerializeField] private Button _choiceButtonA;
+    [SerializeField] private Button _choiceButtonB;
 
     private int cmdIndex, mainIndex, endIndex;
     private bool isKeyWait;
     private bool isEnd; //会話終了
     private bool isSkip; //早送りモード
+    private bool isChoiceWait; //選択肢待ち
+    private int currentChoiceId;
+
+    private readonly Subject<int> _onChoiceA = new Subject<int>();
+    private readonly Subject<int> _onChoiceB = new Subject<int>();
+    public IObservable<int> OnChoiceAAsObservable() => _onChoiceA;
+    public IObservable<int> OnChoiceBAsObservable() => _onChoiceB;
 
     public CustomYieldInstruction WaitTalkEnd => new WaitUntil(() => isEnd);
 
@@ -42,6 +52,21 @@ public class TalkScript : MonoBehaviour
     public void Start()
     {
         _skipButton.OnHoldButtonAsObservable().Subscribe(_ => ToggleSkip()).AddTo(this);
+
+        _choiceButtonA.OnClickAsObservable().Subscribe(_ => OnChoiceSelected(true)).AddTo(this);
+        _choiceButtonB.OnClickAsObservable().Subscribe(_ => OnChoiceSelected(false)).AddTo(this);
+        _choicePanelFader.Show(false);
+    }
+
+    private void OnChoiceSelected(bool isA)
+    {
+        if (!isChoiceWait) return;
+        isChoiceWait = false;
+        _choicePanelFader.Show(false);
+        if (isA) _onChoiceA.OnNext(currentChoiceId);
+        else _onChoiceB.OnNext(currentChoiceId);
+        isKeyWait = false;
+        CmdProc(cmd[cmdIndex++]);
     }
 
     public void ToggleSkip()
@@ -113,6 +138,21 @@ public class TalkScript : MonoBehaviour
                 _charactor[id].isVisible = lines[++argCnt].Equals("1");
                 return;
             }
+            case "choice":
+            {
+                currentChoiceId = int.Parse(lines[++argCnt]);
+                _choiceButtonA.GetComponentInChildren<TMP_Text>().text = lines[++argCnt];
+                _choiceButtonB.GetComponentInChildren<TMP_Text>().text = lines[++argCnt];
+                if (isDryRun == false)
+                {
+                    _choicePanelFader.Show(true);
+                    isChoiceWait = true;
+                    isKeyWait = true;
+                }
+
+                return;
+            }
+
             case "wait":
                 isKeyWait = true;
                 return;
@@ -214,13 +254,15 @@ public class TalkScript : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+// Update is called once per frame
     void Update()
     {
         if (isSkip)
         {
             // スキップモード：テキスト即表示＋自動進行
             message_cnt = totalVisibleCharacters;
+
+            if (isChoiceWait) return; // 選択肢待ちはスキップしない
 
             if (isKeyWait)
             {
@@ -258,7 +300,7 @@ public class TalkScript : MonoBehaviour
             //トークが全て表示されていたら
             if (isKeyWait)
             {
-                if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+                if (isChoiceWait == false && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
                 {
                     isKeyWait = false;
                     CmdProc(cmd[cmdIndex++]);

@@ -6,8 +6,8 @@
 
 [init]
 fontspeed,2
-sprite,0,rina
-sprite,1,akira
+sprite,0,rina_normal
+sprite,1,akira_2_normal
 visible,0,0
 visible,1,0
 visible,2,0
@@ -17,16 +17,19 @@ visible,2,0
 talk,2,カジノの裏路地——排気ダクトの熱風が、アキラの銀髪を揺らしていた。
 
 visible,1,1
+sprite,1,akira_2_determined
 talk,1,「……諦める？　冗談じゃないわ」
 
 talk,2,アキラは叩き出された非常口の前で、端末を開いた。
 
+sprite,1,akira_2_sad
 talk,1,「会話は全部盗聴されてた。あの場で何を言っても、筒抜けだった」
 
 talk,1,「だから……何も伝えられなかった。ごめん、リナ」
 
 talk,2,不安が胸を締めつける。あの囁きだけで、リナに届いただろうか。
 
+sprite,1,akira_2_determined
 talk,1,「……でも、ここで止まったら本当に終わる」
 
 sound,Select
@@ -41,11 +44,13 @@ talk,1,「処理能力が足りない——外部ノードを借りる」
 sound,Swap
 talk,2,アキラは片っ端からクラウドサーバーを確保し、演算リソースを叩き込んだ。
 
+sprite,1,akira_2_smile
 talk,1,「……サーバー代、今月いくらになるか考えたくないわね」
 
 talk,1,「まあいいわ。リナの全財産に比べれば安いもんよ」
 
 sound,Select
+sprite,1,akira_2_determined
 talk,2,ロックが、一つ解除された。続いてもう一つ。
 
 talk,2,裏口の電子錠が、わずかに明滅する。

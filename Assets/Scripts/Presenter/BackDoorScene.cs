@@ -25,6 +25,6 @@ public class BackDoorScene : MonoBehaviour
         //                               && Mouse.current.leftButton.wasPressedThisFrame, cancellationToken: ct);
 
         await _talkScript.TalkSceneLoadAsyncWithoutDismiss(_talkBText.text, ct);
-        _multiWindowDetector.SendPong("後は頼んだわよレナ！");
+        _multiWindowDetector.SendPong("後は頼んだわよリナ！");
     }
 }

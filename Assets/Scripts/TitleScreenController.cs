@@ -49,7 +49,7 @@ public class TitleScreenController : MonoBehaviour
             AudioManager.Instance.PlayBGM(_muonClip);
         }).AddTo(this);
 
-        _windowDetector.SendPing("レナ困ってる？");
+        _windowDetector.SendPing("リナまだ待ってる？");
 
         UpdateButtonStates(_chapterProgress.ClearedPhases);
 

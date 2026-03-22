@@ -65,6 +65,7 @@ public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
     public void SetCardSprite(Sprite sprite)
     {
         _presetSprite = sprite;
+        _spriteRenderer.sprite = _presetSprite;
     }
 
     // --- Open / Close (UniTask) ---

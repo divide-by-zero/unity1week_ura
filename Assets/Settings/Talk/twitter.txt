@@ -1,0 +1,20 @@
+//プレイヤーID 0 はリナ（左） 1はアキラ（右） 2はナレーション（中央）
+//画像差し替え sprite,プレイヤーID,立ち絵の名前
+//キャラクターを表示 visible,プレイヤーID,0 or 1
+//トーク表示 talk,プレイヤーID,会話内容
+//音を鳴らす sound,音の名前
+
+[init]
+fontspeed,2
+sprite,0,rina_normal
+sprite,1,akira_2_normal
+sprite,3,ending
+visible,0,0
+visible,1,0
+visible,2,0
+visible,3,1
+
+[main]
+talk,2,<align=center>最後までプレイありがとうございました！<br>よろしければ感想をお聞かせください！</align>
+choice,0,X(Twitter)で感想を送る,タイトルへ戻る
+[end]

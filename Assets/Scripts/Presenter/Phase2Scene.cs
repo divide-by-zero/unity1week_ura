@@ -14,4 +14,8 @@ public class Phase2Scene : PhaseSceneBase
             _ => "-"
         };
     }
+
+    protected override void Hologram(CardView text, bool isOn)
+    {
+    }
 }

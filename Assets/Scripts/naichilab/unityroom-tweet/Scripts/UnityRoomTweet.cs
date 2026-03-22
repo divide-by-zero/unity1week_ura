@@ -10,6 +10,7 @@ namespace naichilab
         [DllImport("__Internal")]
         private static extern void OpenWindow(string url);
 #endif
+
         private static YieldInstruction _currentCoroutine = null;
 
         public static void Tweet(string gameId, string text, params string[] hashTags)

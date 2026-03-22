@@ -1,12 +1,14 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using InfinitePorker.Enums;
 using InfinitePorker.Logic;
 using KszUtil.Utilities;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using VContainer;
 
 public class CardGameScene : MonoBehaviour
@@ -22,16 +24,18 @@ public class CardGameScene : MonoBehaviour
         public Suit Suit; // Spades=1, Hearts=2, Diamonds=3, Clubs=4
     }
 
-    [Header("参照")] [SerializeField] private GameObject _cardPrefab;
+    [SerializeField] private GameObject _cardPrefab;
     [SerializeField] private PorkerSetting _porkerSetting;
     [SerializeField] private TMP_Text _statusText;
 
-    [Header("グリッド設定")] [SerializeField] private int _columns = 4;
+    [SerializeField] private int _columns = 4;
     [SerializeField] private int _rows = 4;
     [SerializeField] private float _cardSpacingX = 1.5f;
     [SerializeField] private float _cardSpacingZ = 2.0f;
 
-    [Header("ゲーム設定")] [SerializeField] private float _mismatchDelay = 1.5f;
+    [SerializeField] private float _mismatchDelay = 1.5f;
+    [SerializeField] private LifeView _lifeView;
+    [SerializeField] private Image _successImage;
 
     [Inject] AudioManager _audioManager;
 
@@ -41,6 +45,8 @@ public class CardGameScene : MonoBehaviour
     private int _turnCount;
     private int _matchedPairs;
     private int _totalPairs;
+    private int _initialLife = 4;
+    public IntReactiveProperty Life { get; } = new();
 
     private int _lastClickedIndex = -1;
 
@@ -53,6 +59,12 @@ public class CardGameScene : MonoBehaviour
     {
         InitializeGrid();
         SubscribeToAllCardClicks();
+
+        if (_lifeView != null)
+        {
+            _lifeView.Initialize(_initialLife);
+            Life.Subscribe(life => _lifeView.SetLife(life)).AddTo(this);
+        }
     }
 
     private void InitializeGrid()
@@ -128,7 +140,11 @@ public class CardGameScene : MonoBehaviour
         {
             var index = i;
             _cardViews[i].OnClickAsObservable()
-                .Subscribe(_ => _lastClickedIndex = index)
+                .Subscribe(_ =>
+                {
+                    AudioManager.Instance.Play(AudioEnum.CardSound);
+                    _lastClickedIndex = index;
+                })
                 .AddTo(this);
 
             _cardViews[i].OnHoverEnterAsObservable()
@@ -141,10 +157,15 @@ public class CardGameScene : MonoBehaviour
         }
     }
 
-    public async UniTask GameLoopAsync(CancellationToken ct)
+    /// <summary>
+    /// ゲームループ。クリアなら true、ゲームオーバーなら false を返す。
+    /// </summary>
+    public async UniTask<bool> GameLoopAsync(CancellationToken ct)
     {
         // CardView.Start() 完了保証
         await UniTask.Yield(ct);
+
+        Life.Value = _initialLife;
 
         while (_matchedPairs < _totalPairs)
         {
@@ -176,10 +197,30 @@ public class CardGameScene : MonoBehaviour
                 _isMatched[secondIndex] = true;
                 _matchedPairs++;
 
+                AudioManager.Instance.Play(AudioEnum.Success);
+                if (_successImage != null)
+                {
+                    _successImage.gameObject.SetActive(true);
+                    _successImage.DOFillAmount(1f, 0.5f).From(0f).OnComplete(() => _successImage.gameObject.SetActive(false));
+                }
+
                 UpdateStatusText();
             }
             else
             {
+                AudioManager.Instance.Play(AudioEnum.Bad);
+                Life.Value--;
+
+                if (_lifeView != null)
+                {
+                    await _lifeView.PlayLoseLifeAsync(ct);
+                }
+
+                if (Life.Value <= 0)
+                {
+                    return false;
+                }
+
                 await UniTask.Delay(TimeSpan.FromSeconds(_mismatchDelay), cancellationToken: ct);
 
                 // 両方同時に閉じる
@@ -192,6 +233,7 @@ public class CardGameScene : MonoBehaviour
 
         // ゲームクリア
         _statusText.text = $"クリア！ {_turnCount} ターン";
+        return true;
     }
 
     private void SetAllClickable(bool clickable)

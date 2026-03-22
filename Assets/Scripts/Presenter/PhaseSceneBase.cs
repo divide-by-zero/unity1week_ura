@@ -2,6 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using InfinitePorker.Enums;
 using KszUtil.SceneManager;
+using KszUtil.Utilities;
 using UniRx;
 using UnityEngine;
 using VContainer;
@@ -9,13 +10,13 @@ using VContainer;
 public abstract class PhaseSceneBase : MonoBehaviour
 {
     [SerializeField] private CardGameScene _cardGameScene;
-    [SerializeField] private TextAsset _talkText;
+    [SerializeField] protected TextAsset _talkText;
     [SerializeField] private TextAsset _gameoverText;
-    [SerializeField] private TalkScript _talkScript;
+    [SerializeField] protected TalkScript _talkScript;
     [SerializeField] private GamePhase _clearedPhase;
-    [SerializeField] private string _nextScene;
+    [SerializeField] protected string _nextScene;
 
-    [Inject] private ChapterProgressManager _chapterProgress;
+    [Inject] protected ChapterProgressManager _chapterProgress;
 
     protected CardGameScene CardGameScene => _cardGameScene;
     protected TalkScript TalkScript => _talkScript;
@@ -32,6 +33,8 @@ public abstract class PhaseSceneBase : MonoBehaviour
         _cardGameScene.OnHoverEnterAsObservable()
             .Subscribe(view =>
             {
+                AudioManager.Instance.Play(AudioEnum.Select);
+                Hologram(view, true);
                 var text = GetHologramText(view);
                 if (text == null) return;
                 view.SetHologramText(text);
@@ -42,6 +45,7 @@ public abstract class PhaseSceneBase : MonoBehaviour
         _cardGameScene.OnHoverExitAsObservable()
             .Subscribe(view =>
             {
+                Hologram(null, false);
                 view.HologramOff();
             })
             .AddTo(this);
@@ -49,16 +53,35 @@ public abstract class PhaseSceneBase : MonoBehaviour
 
     protected abstract string GetHologramText(CardView view);
 
+    protected abstract void Hologram(CardView text, bool isOn);
+
     protected virtual async UniTask SequenceTask(CancellationToken ct)
     {
         await UniTask.Yield();
 
         await _talkScript.TalkSceneLoadAsync(_talkText.text, ct);
 
-        await _cardGameScene.GameLoopAsync(ct);
+        var cleared = await _cardGameScene.GameLoopAsync(ct);
 
-        _chapterProgress.UpdateProgress(_clearedPhase);
+        if (cleared)
+        {
+            AudioManager.Instance.Play(AudioEnum.GameClear);
+            _chapterProgress.UpdateProgress(_clearedPhase);
+            KszSceneManager.Instance.LoadAsync(_nextScene).Forget();
+        }
+        else
+        {
+            await OnGameOverAsync(ct);
+            KszSceneManager.Instance.LoadAsync("Title").Forget();
+        }
+    }
 
-        KszSceneManager.Instance.LoadAsync(_nextScene).Forget();
+    protected virtual async UniTask OnGameOverAsync(CancellationToken ct)
+    {
+        AudioManager.Instance.Play(AudioEnum.GameOver);
+        if (_gameoverText != null)
+        {
+            await _talkScript.TalkSceneLoadAsync(_gameoverText.text, ct);
+        }
     }
 }

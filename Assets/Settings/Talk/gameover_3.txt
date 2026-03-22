@@ -1,0 +1,41 @@
+//プレイヤーID 0 はリナ（左） 1はアキラ（右） 2はナレーション（中央）
+//画像差し替え sprite,プレイヤーID,立ち絵の名前
+//キャラクターを表示 visible,プレイヤーID,0 or 1
+//トーク表示 talk,プレイヤーID,会話内容
+//音を鳴らす sound,音の名前
+
+[init]
+fontspeed,2
+sprite,0,rina_sad
+sprite,1,akira_1
+visible,0,0
+visible,1,0
+visible,2,0
+
+[main]
+visible,2,0
+talk,2,——試合が終わった。
+talk,2,リナに再びターンが回ってくることは、一度もなかった。
+visible,0,1
+sprite,0,rina_surprise
+talk,2,——それでも、足りなかった。
+
+visible,0,1
+talk,2,盤面には、勝つためのヒントがいくらでも転がっていた。
+talk,2,冷静に考えれば全ての情報は揃っていた。
+
+talk,2,VIPルームに、リナだけが残された。
+
+visible,1,1
+sprite,1,akira_1
+talk,2,隣の席には、狐のお面だけが置かれている。
+
+sprite,0,rina_sad
+talk,0,「……ごめん、アキラ」
+
+talk,0,「あんたは全部やってくれた。約束も守ってくれた」
+
+talk,0,「足りなかったのは、私の腕だよ」
+
+talk,2,後悔だけが、壊れたプログラムのように頭の中をループし続けた。
+[end]

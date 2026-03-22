@@ -5,23 +5,23 @@
 	/// </summary> 
 	public static class AudioEnum
 	{
-		public static string  Confirm = "Confirm";
-		public static string  Check = "Check";
-		public static string  Select = "Select";
-		public static string  DeSelect = "DeSelect";
-		public static string  Undo = "Undo";
-		public static string  Damage = "Damage";
-		public static string  Swap = "Swap";
-		public static string  Powerup = "Powerup";
-		public static string  HandEvaluate = "HandEvaluate";
-		public static string  Back = "Back";
-		public static string  Purchase = "Purchase";
-		public static string  PurchaseFailed = "PurchaseFailed";
-		public static string  PlayerDamage = "PlayerDamage";
-		public static string  ItemUse = "ItemUse";
-		public static string  GameOver = "GameOver";
-		public static string  GameClear = "GameClear";
-		public static string  Error = "Error";
-		public static string  CardSound = "CardSound";
+		public static string  Click = "click";
+		public static string  Check = "check";
+		public static string  Select = "select";
+		public static string  DeSelect = "deselect";
+		public static string  Undo = "undo";
+		public static string  Success = "success";
+		public static string  Bad = "bad";
+		public static string  Powerup = "powerup";
+		public static string  HandEvaluate = "handevaluate";
+		public static string  Back = "back";
+		public static string  Purchase = "purchase";
+		public static string  PurchaseFailed = "purchasefailed";
+		public static string  PlayerDamage = "playerdamage";
+		public static string  ItemUse = "itemuse";
+		public static string  GameOver = "gameover";
+		public static string  GameClear = "gameclear";
+		public static string  Error = "error";
+		public static string  CardSound = "cardsound";
 	}
 }

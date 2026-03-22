@@ -16,6 +16,8 @@ public class ChapterProgressManager
         }
     }
 
+    public bool IsSpecialContinue { get; set; }
+
     public ChapterProgressManager()
     {
         if (ClearedPhases == 0)

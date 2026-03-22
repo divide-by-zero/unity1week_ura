@@ -8,9 +8,11 @@
 fontspeed,2
 sprite,0,rina_normal
 sprite,1,akira_2_normal
+sprite,3,bg1
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,1
 
 [main]
 visible,2,0
@@ -44,17 +46,10 @@ talk,1,「処理能力が足りない——外部ノードを借りる」
 sound,Swap
 talk,2,アキラは片っ端からクラウドサーバーを確保し、演算リソースを叩き込んだ。
 
-sprite,1,akira_2_smile
-talk,1,「……サーバー代、今月いくらになるか考えたくないわね」
-
-talk,1,「まあいいわ。リナの全財産に比べれば安いもんよ」
-
-sound,Select
 sprite,1,akira_2_determined
 talk,2,ロックが、一つ解除された。続いてもう一つ。
 
 talk,2,裏口の電子錠が、わずかに明滅する。
-
 talk,1,「あと少し——」
 
 sound,Swap
@@ -67,7 +62,9 @@ talk,1,「……開いた」
 talk,2,アキラは端末を閉じ、裏口に手をかけた。
 
 sound,Select
-talk,1,「待ってて、リナ——今、行くから！」
+talk,1,「待ってて、リナ——！」
 
-talk,2,アキラは暗い通路へ駆け出した。
+talk,2,アキラは狭い通路へ駆け出した。
+
+wait
 [end]

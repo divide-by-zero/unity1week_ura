@@ -32,6 +32,13 @@ public class TalkScript : MonoBehaviour
     public IObservable<int> OnChoiceAAsObservable() => _onChoiceA;
     public IObservable<int> OnChoiceBAsObservable() => _onChoiceB;
 
+    private readonly Dictionary<int, bool> _choiceResults = new();
+
+    /// <summary>
+    /// 選択結果を取得（true=A, false=B）。未選択のIDはfalseを返す。
+    /// </summary>
+    public bool GetChoiceResult(int choiceId) => _choiceResults.GetValueOrDefault(choiceId);
+
     public CustomYieldInstruction WaitTalkEnd => new WaitUntil(() => isEnd);
 
     [SerializeField] private UIFader _uiFader;
@@ -63,6 +70,7 @@ public class TalkScript : MonoBehaviour
         if (!isChoiceWait) return;
         isChoiceWait = false;
         _choicePanelFader.Show(false);
+        _choiceResults[currentChoiceId] = isA;
         if (isA) _onChoiceA.OnNext(currentChoiceId);
         else _onChoiceB.OnNext(currentChoiceId);
         isKeyWait = false;
@@ -83,10 +91,10 @@ public class TalkScript : MonoBehaviour
 
     public void CmdProc(string cm, bool isDryRun = false)
     {
-        var lines = cm.ToLower().Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+        var lines = cm.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 
         int argCnt = 0;
-        switch (lines[0])
+        switch (lines[0].ToLower())
         {
             case "fontspeed":
                 fontTransitionSpeed = int.Parse(lines[++argCnt]);
@@ -125,12 +133,12 @@ public class TalkScript : MonoBehaviour
                 return;
             }
             case "sound":
-                var audioName = lines[++argCnt];
-                if (isDryRun == false)
-                {
-                    AudioManager.Instance.Play(audioName);
-                }
-
+                // var audioName = lines[++argCnt];
+                // if (isDryRun == false)
+                // {
+                //     AudioManager.Instance.Play(audioName);
+                // }
+                //
                 return;
             case "visible":
             {
@@ -208,6 +216,9 @@ public class TalkScript : MonoBehaviour
 
     public void Create(string talkScript)
     {
+        cmd.Clear();
+        _choiceResults.Clear();
+
         //デフォルト値を読み込み・実行
         //画像等を先読み実行
         LoadPage(talkScript);
@@ -346,5 +357,12 @@ public class TalkScript : MonoBehaviour
         Create(text);
         await WaitTalkEnd.WithCancellation(ct);
         UIFader.Show(false);
+    }
+
+    public async UniTask TalkSceneLoadAsyncWithoutDismiss(string text, CancellationToken ct)
+    {
+        UIFader.Show(true);
+        Create(text);
+        await WaitTalkEnd.WithCancellation(ct);
     }
 }

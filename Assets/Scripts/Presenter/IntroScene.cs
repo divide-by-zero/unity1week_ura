@@ -11,7 +11,6 @@ public class IntroScene : MonoBehaviour
     [SerializeField] private TalkScript _talkScript;
     [SerializeField] private TextAsset _talkText;
     [SerializeField] private string _nextScene;
-    [SerializeField] private Button _skipButton;
 
     [Inject] private ChapterProgressManager _chapterProgress;
 

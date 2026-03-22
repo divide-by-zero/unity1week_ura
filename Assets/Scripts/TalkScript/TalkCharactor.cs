@@ -89,7 +89,7 @@ public class TalkCharactor : MonoBehaviour
         talk_y += (talk_target_y - talk_y) / fadeSpeed;
 
         _charaImage.rectTransform.anchoredPosition = pos;
-        _charaImage.rectTransform.rotation = Quaternion.Euler(0, 0, talk_y);
+        // _charaImage.rectTransform.rotation = Quaternion.Euler(0, 0, talk_y);
 
         _charaImage.color = isTalk ? Color.white : Color.gray;
     }

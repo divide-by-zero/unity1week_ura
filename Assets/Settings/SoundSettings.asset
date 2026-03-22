@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SoundSettings
   m_EditorClassIdentifier: 
   _registerSeDataList:
-  - name: Confirm
+  - name: Click
     audioClip: {fileID: 8300000, guid: 0ad909f7d54130943b6202add367c4e1, type: 3}
     volume: 1
     pitch: 1
@@ -38,13 +38,13 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     isLoop: 0
-  - name: Damage
+  - name: Success
     audioClip: {fileID: 8300000, guid: 327caad8e4cfe4343910bb711db4555e, type: 3}
     volume: 1
     pitch: 1
     isLoop: 0
-  - name: Swap
-    audioClip: {fileID: 8300000, guid: a578950c0e956914e82cf7d4ebcaaef1, type: 3}
+  - name: Bad
+    audioClip: {fileID: 8300000, guid: 0061357a27806304ca3295d3c582eeb0, type: 3}
     volume: 1
     pitch: 1
     isLoop: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
     pitch: 1
     isLoop: 0
   - name: GameOver
-    audioClip: {fileID: 8300000, guid: f0071ad9b30454295aece727fc52ffe3, type: 3}
+    audioClip: {fileID: 8300000, guid: 5069d628192cdce4ebd6b4ea374d7098, type: 3}
     volume: 1
     pitch: 1
     isLoop: 0

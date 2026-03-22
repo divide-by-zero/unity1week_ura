@@ -166,12 +166,12 @@ TextureImporter:
       name: rina_faces_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 967
-        width: 451
-        height: 438
+        x: 20
+        y: 983
+        width: 425
+        height: 407
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -188,12 +188,12 @@ TextureImporter:
       name: rina_faces_1
       rect:
         serializedVersion: 2
-        x: 495
-        y: 968
-        width: 450
-        height: 437
+        x: 509
+        y: 983
+        width: 422
+        height: 409
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: rina_faces_2
       rect:
         serializedVersion: 2
-        x: 974
-        y: 968
-        width: 451
-        height: 437
+        x: 995
+        y: 983
+        width: 398
+        height: 406
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -232,12 +232,12 @@ TextureImporter:
       name: rina_faces_3
       rect:
         serializedVersion: 2
-        x: 9
-        y: 479
-        width: 451
-        height: 463
+        x: 18
+        y: 495
+        width: 429
+        height: 435
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -254,12 +254,12 @@ TextureImporter:
       name: rina_faces_4
       rect:
         serializedVersion: 2
-        x: 491
-        y: 480
-        width: 456
-        height: 461
+        x: 507
+        y: 493
+        width: 427
+        height: 435
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -276,12 +276,12 @@ TextureImporter:
       name: rina_faces_5
       rect:
         serializedVersion: 2
-        x: 973
-        y: 480
-        width: 450
-        height: 462
+        x: 981
+        y: 493
+        width: 429
+        height: 433
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -298,12 +298,12 @@ TextureImporter:
       name: rina_faces_6
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 445
-        height: 449
+        x: 33
+        y: 12
+        width: 420
+        height: 417
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -320,12 +320,12 @@ TextureImporter:
       name: rina_faces_7
       rect:
         serializedVersion: 2
-        x: 492
-        y: 2
-        width: 457
-        height: 447
+        x: 511
+        y: 14
+        width: 423
+        height: 417
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -342,12 +342,12 @@ TextureImporter:
       name: rina_faces_8
       rect:
         serializedVersion: 2
-        x: 972
-        y: 2
-        width: 453
-        height: 449
+        x: 987
+        y: 14
+        width: 423
+        height: 415
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -364,7 +364,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0be086c08f7b143168be134277a19f26
     internalID: 0
     vertices: []
     indices: 

@@ -142,10 +142,10 @@ TextureImporter:
       name: akira_3_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 0
-        width: 539
-        height: 580
+        x: 21
+        y: 18
+        width: 502
+        height: 542
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,12 +164,12 @@ TextureImporter:
       name: akira_3_1
       rect:
         serializedVersion: 2
-        x: 1350
-        y: 0
-        width: 552
-        height: 580
+        x: 1360
+        y: 22
+        width: 519
+        height: 538
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

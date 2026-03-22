@@ -10,27 +10,24 @@ using UnityEngine;
 
 public class CardView : MonoBehaviour, IMouseHoverable, IMouseClickable
 {
-    [Header("参照")] [SerializeField] private Transform _cardParent;
+    [SerializeField] private Transform _cardParent;
     [SerializeField] private Transform _hologramParent;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private PorkerSetting _porkerSetting;
     [SerializeField] private TextMeshPro _text;
 
-    [Header("Open / Close")] [SerializeField]
-    private float _flipDuration = 0.5f;
+    [SerializeField] private float _flipDuration = 0.5f;
 
     [SerializeField] private Ease _flipEase = Ease.OutQuart;
     [SerializeField] private float _flipLiftHeight = 0.3f;
     [SerializeField] private float _flipLiftDuration = 0.15f;
 
-    [Header("Select / Deselect")] [SerializeField]
-    private float _selectOffsetY = 0.15f;
+    [SerializeField] private float _selectOffsetY = 0.15f;
 
     [SerializeField] private float _selectDuration = 0.2f;
     [SerializeField] private Ease _selectEase = Ease.OutQuad;
 
-    [Header("MouseOver On / Off")] [SerializeField]
-    private float _hoverScale = 1.08f;
+    [SerializeField] private float _hoverScale = 1.08f;
 
     [SerializeField] private float _hoverDuration = 0.15f;
     [SerializeField] private Ease _hoverEase = Ease.OutQuad;

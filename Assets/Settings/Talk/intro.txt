@@ -6,15 +6,17 @@
 
 [init]
 fontspeed,2
-sprite,0,rina
-sprite,1,akira
+sprite,0,rina_normal
+sprite,1,akira_0_normal
+sprite,3,intro
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,1
 
 [main]
 visible,2,0
-talk,2,ネオンが毒々しく輝くサイバー・スラムの裏路地。合成酒の空き瓶が転がる
+talk,2,ネオンが毒々しく輝くサイバー・スラムのバーに合成酒の空き瓶が転がる
 
 visible,0,1
 talk,0,「うぅ……もうダメだぁ。私の人生、ここで完全シャットダウンなんだよぉ……」
@@ -24,10 +26,9 @@ talk,2,全財産を注ぎ込んだ最新の電子神経衰弱『サイバー・�
 
 sound,Select
 visible,1,1
-talk,1,「……情けないわね。そんな前時代のイカサマに引っかかるなんて」
+talk,1,「……情けないわね。」
 
-talk,2,不意に上から降りてきた、鈴を転がすような声。
-talk,2,オーバーサイズのハイテクパーカーに身を包んだ、銀髪の少女——アキラが立っていた。
+talk,2,そこには、狐のお面で顔を隠した銀髪の少女——アキラが立っていた。
 
 talk,0,「……はあ？　誰よ、あんた。私をバカにしに来たの？」
 

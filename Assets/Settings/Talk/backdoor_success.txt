@@ -17,7 +17,6 @@ visible,2,0
 
 talk,2,——その時、違和感を覚えた。
 
-sound,Select
 sprite,0,rina_surprise
 talk,0,「……ん？　なにか……変わった？」
 
@@ -29,7 +28,6 @@ talk,2,リナの脳裏に、あの囁きがよみがえった。
 
 talk,2,——「絶対に助けに戻る」
 
-sound,Swap
 sprite,0,rina_normal
 talk,0,「……アキラ」
 

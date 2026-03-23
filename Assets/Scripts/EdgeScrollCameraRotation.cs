@@ -11,17 +11,19 @@ public class EdgeScrollCameraRotation : MonoBehaviour
 
     [SerializeField] private float _dragSensitivity = 0.2f;
 
+    [SerializeField] private float _keyboardSpeed = 30f;
+
     [SerializeField] private float _minX = -10f;
     [SerializeField] private float _maxX = 10f;
 
     [SerializeField] private float _minPitch = -45f;
     [SerializeField] private float _maxPitch = 45f;
 
-    private bool _enableEdgeScroll = false;
+    private readonly bool _enableEdgeScroll = false;
+    private readonly bool _enableKeyboard = false;
 
     private float _currentX;
     private float _currentPitch;
-    private Vector3 _initialPosition;
     private Vector2 _prevMousePos;
     private bool _isDragging;
 
@@ -29,7 +31,6 @@ public class EdgeScrollCameraRotation : MonoBehaviour
     {
         transform.position = new Vector3(0f, 11f, -9.5f);
 
-        _initialPosition = transform.position;
         _currentX = 0f;
         _currentPitch = transform.eulerAngles.x;
         // 0〜360 を -180〜180 に変換
@@ -38,17 +39,21 @@ public class EdgeScrollCameraRotation : MonoBehaviour
 
     private void Update()
     {
-        if (Mouse.current == null) return;
+        if (Pointer.current == null) return;
 
-        var mousePos = Mouse.current.position.ReadValue();
+        var mousePos = Pointer.current.position.ReadValue();
         float screenW = Screen.width;
         float screenH = Screen.height;
 
         float horizontal = 0f;
         float vertical = 0f;
 
-        // 右ドラッグ
-        if (Mouse.current.rightButton.isPressed)
+        // 右ドラッグ or 2本指タッチ
+        bool isDragInput = (Mouse.current != null && Mouse.current.leftButton.isPressed)
+                           || (Touchscreen.current != null
+                               && Touchscreen.current.touches[0].press.isPressed
+                               && Touchscreen.current.touches[1].press.isPressed);
+        if (isDragInput)
         {
             if (_isDragging)
             {
@@ -86,8 +91,29 @@ public class EdgeScrollCameraRotation : MonoBehaviour
                 else if (normalizedY > 1f - _edgeThreshold)
                     vertical = -((normalizedY - (1f - _edgeThreshold)) / _edgeThreshold); // -1〜0 (上端→下向き回転)
 
-                horizontal *= _horizontalSpeed * Time.deltaTime;
-                vertical *= _verticalSpeed * Time.deltaTime;
+                // クリックされていないなら何もしない
+                if (Pointer.current.press.isPressed)
+                {
+                    horizontal *= _horizontalSpeed * Time.deltaTime;
+                    vertical *= _verticalSpeed * Time.deltaTime;
+                }
+            }
+        }
+
+        // キーボード入力
+        if (_enableKeyboard)
+        {
+            var keyboard = Keyboard.current;
+            if (keyboard != null)
+            {
+                if (keyboard.upArrowKey.isPressed)
+                    vertical -= _keyboardSpeed * Time.deltaTime;
+                if (keyboard.downArrowKey.isPressed)
+                    vertical += _keyboardSpeed * Time.deltaTime;
+                if (keyboard.leftArrowKey.isPressed)
+                    horizontal -= _keyboardSpeed * Time.deltaTime;
+                if (keyboard.rightArrowKey.isPressed)
+                    horizontal += _keyboardSpeed * Time.deltaTime;
             }
         }
 

@@ -133,12 +133,20 @@ public class TalkScript : MonoBehaviour
                 return;
             }
             case "sound":
-                // var audioName = lines[++argCnt];
-                // if (isDryRun == false)
-                // {
-                //     AudioManager.Instance.Play(audioName);
-                // }
-                //
+                var audioName = lines[++argCnt];
+                if (isDryRun == false && isSkip == false)
+                {
+                    AudioManager.Instance.Play(audioName);
+                }
+
+                return;
+            case "bgm":
+                var bgmName = lines[++argCnt];
+                if (isDryRun == false)
+                {
+                    AudioManager.Instance.PlayBGM(bgmName);
+                }
+
                 return;
             case "visible":
             {
@@ -311,7 +319,7 @@ public class TalkScript : MonoBehaviour
             //トークが全て表示されていたら
             if (isKeyWait)
             {
-                if (isChoiceWait == false && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+                if (isChoiceWait == false && Pointer.current != null && Pointer.current.press.wasPressedThisFrame)
                 {
                     isKeyWait = false;
                     CmdProc(cmd[cmdIndex++]);
@@ -331,7 +339,7 @@ public class TalkScript : MonoBehaviour
         }
         else
         {
-            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+            if (Pointer.current != null && Pointer.current.press.wasPressedThisFrame)
             {
                 //まだメッセージが出切ってないので、全メッセージ表示
                 message_cnt = totalVisibleCharacters;

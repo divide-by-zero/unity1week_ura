@@ -23,8 +23,8 @@ public class MouseCardController : MonoBehaviour
         }
         else
         {
-            if (Mouse.current == null) return;
-            screenPos = Mouse.current.position.ReadValue();
+            if (Pointer.current == null) return;
+            screenPos = Pointer.current.position.ReadValue();
         }
 
         var ray = _camera.ScreenPointToRay(screenPos);
@@ -42,7 +42,7 @@ public class MouseCardController : MonoBehaviour
             _currentHovered?.OnHoverEnter();
         }
 
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (Pointer.current != null && Pointer.current.press.wasPressedThisFrame)
         {
             if (newHovered is IMouseClickable clickable)
             {

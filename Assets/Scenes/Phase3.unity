@@ -501,7 +501,8 @@ MonoBehaviour:
   _edgeThreshold: 0.3
   _horizontalSpeed: 60
   _verticalSpeed: 40
-  _dragSensitivity: 0.2
+  _dragSensitivity: 0.05
+  _keyboardSpeed: 30
   _minX: 0
   _maxX: 0
   _minPitch: 35

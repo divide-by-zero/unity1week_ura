@@ -228,13 +228,16 @@ public class CardGameScene : MonoBehaviour
 
                 await UniTask.Delay(TimeSpan.FromSeconds(_mismatchDelay), cancellationToken: ct);
 
-                // 両方同時に閉じる
+                // 両方同時に閉じる柴
                 await UniTask.WhenAll(
                     _cardViews[firstIndex].PlayCloseAsync(ct),
                     _cardViews[secondIndex].PlayCloseAsync(ct)
                 );
             }
         }
+
+        //ちょっとDelay
+        await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: ct);
 
         // ゲームクリア
         _statusText.text = $"クリア！ {_turnCount} ターン";

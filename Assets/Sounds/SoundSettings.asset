@@ -33,11 +33,6 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     isLoop: 0
-  - name: Undo
-    audioClip: {fileID: 8300000, guid: 76b3dcaa8137c614d9e45888dbe8e5ef, type: 3}
-    volume: 1
-    pitch: 1
-    isLoop: 0
   - name: Success
     audioClip: {fileID: 8300000, guid: 327caad8e4cfe4343910bb711db4555e, type: 3}
     volume: 1
@@ -53,11 +48,6 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     isLoop: 0
-  - name: HandEvaluate
-    audioClip: {fileID: 8300000, guid: 18b50cea912c66d4481b88f248fff9d6, type: 3}
-    volume: 1
-    pitch: 1
-    isLoop: 0
   - name: Back
     audioClip: {fileID: 8300000, guid: 2f47062e25a0f9c4da8e9ea2292376e1, type: 3}
     volume: 1
@@ -68,23 +58,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     isLoop: 0
-  - name: PurchaseFailed
-    audioClip: {fileID: 8300000, guid: 5069d628192cdce4ebd6b4ea374d7098, type: 3}
-    volume: 1
-    pitch: 1
-    isLoop: 0
-  - name: PlayerDamage
-    audioClip: {fileID: 8300000, guid: 1cbf2c03f630da14bb71be42176d0b5e, type: 3}
-    volume: 1
-    pitch: 1
-    isLoop: 0
-  - name: ItemUse
-    audioClip: {fileID: 8300000, guid: a578950c0e956914e82cf7d4ebcaaef1, type: 3}
-    volume: 1
-    pitch: 1
-    isLoop: 0
   - name: GameOver
-    audioClip: {fileID: 8300000, guid: 5069d628192cdce4ebd6b4ea374d7098, type: 3}
+    audioClip: {fileID: 8300000, guid: 2aec6235451c8490fa9a0687e955f3ea, type: 3}
     volume: 1
     pitch: 1
     isLoop: 0

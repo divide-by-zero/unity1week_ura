@@ -21,7 +21,6 @@ talk,2,成金の男は信じられないという顔で、しばらく盤面を�
 talk,2,「……バカな。レンズもなしに、なぜ……」
 
 visible,0,1
-sound,Select
 sprite,0,rina_smile
 talk,0,「残念ね——あたしには、最高の相棒がいるのよ」
 

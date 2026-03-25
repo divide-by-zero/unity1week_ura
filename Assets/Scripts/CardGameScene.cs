@@ -237,6 +237,7 @@ public class CardGameScene : MonoBehaviour
 
                 if (Life.Value <= 0)
                 {
+                    Disposable.Dispose();
                     return false;
                 }
 

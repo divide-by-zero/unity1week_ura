@@ -7,6 +7,7 @@ public class MouseCardController : MonoBehaviour
 
     private IMouseHoverable _currentHovered;
     private Vector2? _overridePosition;
+    private bool _cardJustHovered;
 
     /// <summary>外部からマウス位置を上書きする。nullを渡すと実際のマウス位置に戻る。</summary>
     public void SetOverridePosition(Vector2? position)
@@ -40,11 +41,23 @@ public class MouseCardController : MonoBehaviour
             _currentHovered?.OnHoverExit();
             _currentHovered = newHovered;
             _currentHovered?.OnHoverEnter();
+            _cardJustHovered = true;
+        }
+        else
+        {
+            _cardJustHovered = false;
         }
 
         if (Pointer.current != null && Pointer.current.press.wasPressedThisFrame)
         {
-            if (newHovered is IMouseClickable clickable)
+            var isTouchPress = Touchscreen.current != null
+                               && Touchscreen.current.primaryTouch.press.wasPressedThisFrame;
+
+            if (isTouchPress && _cardJustHovered)
+            {
+                // タッチ1タップ目: hoverのみ、clickは抑制
+            }
+            else if (newHovered is IMouseClickable clickable)
             {
                 clickable.OnClick();
             }

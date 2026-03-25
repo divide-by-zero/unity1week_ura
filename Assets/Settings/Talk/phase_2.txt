@@ -11,14 +11,18 @@ sprite,1,akira_0_normal
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,0
+
 
 [main]
+bgm,BGM_Casino
 visible,2,0
 talk,2,第1戦——リナの勝利。成金の男の顔から余裕が消えた。
 
 talk,2,だが、男はすぐに端末を取り出し、何かを呼び出した。
 
 visible,1,1
+sound,Alert
 talk,2,アキラの通信が割り込んでくる。
 
 sprite,1,akira_0_serious
@@ -59,7 +63,9 @@ talk,2,通信が途絶え、静寂がテーブルを包む。
 
 talk,2,リナはレンズ越しに、書き換えられたカードの模様を睨みつけた。
 
+sound,Decision
 talk,0,「……上等。パターンがあるなら、必ず見つけてやる」
 
 talk,2,第2戦——今度はリナの洞察力が、本当に試される。
+bgm,BGM_Casino
 [end]

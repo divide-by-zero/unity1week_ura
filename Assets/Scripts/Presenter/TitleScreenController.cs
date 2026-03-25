@@ -42,7 +42,7 @@ public class TitleScreenController : MonoBehaviour
             _chapterProgress.ClearedPhases = _debugClearedPhase;
         }
 #endif
-        _windowDetector.PingReceived.Subscribe(s =>
+        _windowDetector.PongReceived.Subscribe(s =>
         {
             Debug.Log(s);
             UpdateButtonStates(GamePhase.BackDoor);

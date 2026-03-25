@@ -11,8 +11,11 @@ sprite,1,akira_1
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,0
+
 
 [main]
+bgm,BGM_Despair
 visible,2,0
 talk,2,——試合が終わった。いや、「終わっていた」と言うべきか。
 

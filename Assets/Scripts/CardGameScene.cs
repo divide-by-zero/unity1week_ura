@@ -5,6 +5,7 @@ using DG.Tweening;
 using InfinitePorker.Enums;
 using InfinitePorker.Logic;
 using KszUtil.Utilities;
+using TextFx;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -36,6 +37,7 @@ public class CardGameScene : MonoBehaviour
     [SerializeField] private float _mismatchDelay = 1.5f;
     [SerializeField] private LifeView _lifeView;
     [SerializeField] private Image _successImage;
+    [SerializeField] private TextFxTextMeshProUGUI _textFxText;
 
     [Inject] AudioManager _audioManager;
 
@@ -55,10 +57,12 @@ public class CardGameScene : MonoBehaviour
     public IObservable<CardView> OnHoverEnterAsObservable() => _onHoverEnter;
     public IObservable<CardView> OnHoverExitAsObservable() => _onHoverExit;
 
+    public IDisposable Disposable { private set; get; }
+
     private void Start()
     {
         InitializeGrid();
-        SubscribeToAllCardClicks();
+        Disposable = SubscribeToAllCardClicks().AddTo(this);
 
         if (_lifeView != null)
         {
@@ -134,8 +138,10 @@ public class CardGameScene : MonoBehaviour
         return _cardViews[nr * _columns + nc];
     }
 
-    private void SubscribeToAllCardClicks()
+    private IDisposable SubscribeToAllCardClicks()
     {
+        var compositeDisposable = new CompositeDisposable();
+
         for (var i = 0; i < _cardViews.Length; i++)
         {
             var index = i;
@@ -145,16 +151,18 @@ public class CardGameScene : MonoBehaviour
                     AudioManager.Instance.Play(AudioEnum.CardSound);
                     _lastClickedIndex = index;
                 })
-                .AddTo(this);
+                .AddTo(compositeDisposable);
 
             _cardViews[i].OnHoverEnterAsObservable()
                 .Subscribe(v => _onHoverEnter.OnNext(v))
-                .AddTo(this);
+                .AddTo(compositeDisposable);
 
             _cardViews[i].OnHoverExitAsObservable()
                 .Subscribe(v => _onHoverExit.OnNext(v))
-                .AddTo(this);
+                .AddTo(compositeDisposable);
         }
+
+        return compositeDisposable;
     }
 
     /// <summary>
@@ -162,6 +170,10 @@ public class CardGameScene : MonoBehaviour
     /// </summary>
     public async UniTask<bool> GameLoopAsync(CancellationToken ct)
     {
+        //開始演出
+        AudioManager.Instance.Play(AudioEnum.GameStart);
+        _textFxText.AnimationManager.PlayAnimation();
+
         // CardView.Start() 完了保証
         await UniTask.Yield(ct);
 
@@ -198,16 +210,18 @@ public class CardGameScene : MonoBehaviour
                 _matchedPairs++;
 
                 AudioManager.Instance.Play(AudioEnum.Success);
-                if (_successImage != null)
-                {
-                    UniTask.Void(async () =>
-                    {
-                        _successImage.gameObject.SetActive(true);
-                        await _successImage.DOFillAmount(1f, 0.5f).From(0f).ToUniTask(cancellationToken: ct);
-                        await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: ct);
-                        _successImage.gameObject.SetActive(false);
-                    });
-                }
+                _textFxText.text = $"{_matchedPairs} Hit!!";
+                _textFxText.AnimationManager.PlayAnimation();
+                // if (_successImage != null)
+                // {
+                //     UniTask.Void(async () =>
+                //     {
+                //         _successImage.gameObject.SetActive(true);
+                //         await _successImage.DOFillAmount(1f, 0.5f).From(0f).ToUniTask(cancellationToken: ct);
+                //         await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: ct);
+                //         _successImage.gameObject.SetActive(false);
+                //     });
+                // }
 
                 UpdateStatusText();
             }
@@ -240,6 +254,7 @@ public class CardGameScene : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(1f), cancellationToken: ct);
 
         // ゲームクリア
+        Disposable.Dispose();
         _statusText.text = $"クリア！ {_turnCount} ターン";
         return true;
     }

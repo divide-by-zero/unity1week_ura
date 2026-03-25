@@ -334,6 +334,7 @@ MonoBehaviour:
   _horizontalSpeed: 60
   _verticalSpeed: 40
   _dragSensitivity: 0.2
+  _keyboardSpeed: 30
   _minX: 0
   _maxX: 0
   _minPitch: 35
@@ -980,6 +981,7 @@ MonoBehaviour:
   _talkScript: {fileID: 542694381}
   _talkAText: {fileID: 4900000, guid: d6c07044e81484a6592a978a2870333d, type: 3}
   _talkBText: {fileID: 4900000, guid: 19f636842745947ed9a8e1573b55b9e8, type: 3}
+  _talkCText: {fileID: 4900000, guid: 82287a22fd3c42fba3e9a9f9689be24a, type: 3}
   _multiWindowDetector: {fileID: 651530533}
 --- !u!1001 &3671609879558281133
 PrefabInstance:

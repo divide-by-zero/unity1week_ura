@@ -10,11 +10,14 @@ sprite,0,rina_sad
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,0
+
 
 [main]
 visible,0,1
 visible,2,0
 
+sound,Surprise
 talk,2,——その時、違和感を覚えた。
 
 sprite,0,rina_surprise
@@ -26,15 +29,18 @@ talk,2,でも——さっきまでとは、何かが違う。
 
 talk,2,リナの脳裏に、あの囁きがよみがえった。
 
+sound,Whisper
 talk,2,——「絶対に助けに戻る」
 
 sprite,0,rina_normal
 talk,0,「……アキラ」
 
 sprite,0,rina_smile
+sound,Decision
 talk,0,「……よし」
 
 talk,0,「諦めるな、私。すべての情報を、無駄にするな——！」
 
 talk,2,リナは目を見開いた。
+bgm,BGM_Casino2
 [end]

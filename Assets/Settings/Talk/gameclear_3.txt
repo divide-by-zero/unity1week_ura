@@ -11,9 +11,13 @@ sprite,1,akira_1
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,0
+
 
 [main]
+bgm,BGM_Victory2
 visible,2,0
+sound,Impact
 talk,2,第3戦——リナの勝利。
 
 talk,2,成金の男は信じられないという顔で、しばらく盤面を見つめていた。

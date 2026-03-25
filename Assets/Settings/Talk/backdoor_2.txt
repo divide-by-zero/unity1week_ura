@@ -15,10 +15,12 @@ visible,2,0
 visible,3,1
 
 [main]
+bgm,BGM_Backdoor
 visible,2,0
 talk,2,カジノの地下——セキュリティルーム。
 
 visible,1,1
+sound,Footstep
 talk,2,アキラは息を切らしながら、コンソールの前に滑り込んだ。
 
 talk,1,「ここが中枢……モニター、全部生きてる」
@@ -30,6 +32,7 @@ talk,2,リナがカードテーブルの前に座っている。まだ、試合�
 sprite,1,akira_2_sad
 talk,1,「リナ……まだ戦ってるのね」
 
+sound,Typing
 talk,2,アキラはコンソールを操作し、カードの盤面を拡大した。
 
 talk,2,ナノドットの配列が、アキラの目にははっきりと見える。自分が設計したシステムだ——当然、読める。
@@ -54,14 +57,14 @@ talk,2,——その時、アキラの目が、コンソールのあるものに�
 talk,1,「……待って」
 
 sprite,1,akira_2_smile
+sound,Surprise
 talk,2,アキラの表情が変わった。
 
 talk,1,「そうよ。これがあるじゃない——！」
 
 sprite,1,akira_2_determined
+sound,Typing
 talk,2,アキラの指が、再びコンソールの上を走り始めた。
 
 talk,1,「……後は任せたわよリナ！！」
-
-talk,2,<align="center">================<br>アキラは手を尽くしました こちらは閉じて<br>本編に戻ってください<br>================</align>
 [end]

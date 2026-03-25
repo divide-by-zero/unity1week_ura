@@ -15,7 +15,9 @@ visible,2,0
 visible,3,1
 
 [main]
+bgm,BGM_Ending
 visible,2,0
+sound,Impact
 talk,2,第3戦——リナの勝利。
 
 talk,2,アキラの作戦は、大胆にして完璧だった。
@@ -50,6 +52,7 @@ talk,1,「いや……今回の件、ちょっとばかし経費がかかっち�
 talk,2,アキラが端末の画面をリナに見せた。そこには——<br>クラウドサーバーの請求明細が並んでいた。
 
 sprite,0,rina_surprise
+sound,Surprise
 talk,0,「……は？」
 
 talk,0,「なにこの金額……ゼロ何個あるの……？」

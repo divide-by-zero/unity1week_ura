@@ -11,8 +11,11 @@ sprite,1,akira_0_normal
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,0
+
 
 [main]
+bgm,BGM_Casino
 visible,2,0
 talk,2,電脳カジノ『ネオンアビス』——このスラム最大の賭場。
 talk,2,リナから全財産を巻き上げた成金の男は、今日も余裕の笑みを浮かべてVIP席に座っていた。
@@ -23,12 +26,14 @@ visible,0,1
 talk,2,アキラから渡されたスペクトル・レンズが、カードの裏面に刻印された不可視のナノドットを、鮮やかなARで浮かび上がらせていた。
 
 sprite,0,rina_surprise
+sound,LensActivate
 talk,0,「……見える、全部丸見えじゃない！」
 
 visible,1,1
 talk,2,隣に立つのは、狐のお面で顔を隠した少女——アキラ
 
 sprite,1,akira_0_serious
+sound,Typing
 talk,2,アキラがPCを叩き、信号を同期させる。
 
 talk,1,「落ち着きなさい。データが見えるだけじゃ、まだ何も始まってないわ」
@@ -49,7 +54,9 @@ talk,1,「いい？　ゲームが始まったら、私はもう何も手を貸�
 
 talk,1,「ここから先は、あんた一人の勝負よ——任せたわ」
 
+sound,Decision
 talk,0,「……上等。やってやるわよ」
 
 talk,2,リナは拳を握り、カードテーブルへと歩き出した。
+bgm,BGM_Casino
 [end]

@@ -78,6 +78,116 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     isLoop: 0
+  - name: Footstep
+    audioClip: {fileID: 8300000, guid: 6a33d421cd0dd4d55b66866e666bb6d8, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Impact
+    audioClip: {fileID: 8300000, guid: a179d38364f6f4ea0ac5ed1bbd5d8bb3, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: LensActivate
+    audioClip: {fileID: 8300000, guid: b61446b2c1ff616418bb267205c4b179, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Typing
+    audioClip: {fileID: 8300000, guid: 6cbc42776bb1946fcbd2943ebc8f6b1e, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Decision
+    audioClip: {fileID: 8300000, guid: 7f063f01c07d64a8d9b6262947db7350, type: 3}
+    volume: 0.802
+    pitch: 1
+    isLoop: 0
+  - name: Alert
+    audioClip: {fileID: 8300000, guid: 9fcb1a8bfa1284f4599a2488eeb5ce7e, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: MaskOff
+    audioClip: {fileID: 8300000, guid: 926befb19adab4944aea260609d90758, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Surprise
+    audioClip: {fileID: 8300000, guid: 3eb1327e598ef4946ba04db6ec3fdc59, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Jamming
+    audioClip: {fileID: 8300000, guid: dea1286c59b584d09810d58fc46227be, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: Whisper
+    audioClip: {fileID: 8300000, guid: 0b28ee7a1186244a1aba42e2309a6225, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: DoorUnlock
+    audioClip: {fileID: 8300000, guid: cf21b924175704d4f957a006735af097, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
+  - name: BGM_Bar
+    audioClip: {fileID: 8300000, guid: a87823fbb088a4c1da0a30850ce37044, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: BGM_Casino
+    audioClip: {fileID: 8300000, guid: c72dd0e7a6e8046da8e585d801987b0b, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: BGM_Casino2
+    audioClip: {fileID: 8300000, guid: 22d9b9970b80042588b7423c3afa5f81, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: BGM_Crisis
+    audioClip: {fileID: 8300000, guid: 695977fa9207b493cb054e21ed7aa2bc, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: BGM_Victory
+    audioClip: {fileID: 8300000, guid: be2c983436daf4639bfdacd4d2749a8a, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: BGM_Victory2
+    audioClip: {fileID: 8300000, guid: d6c213124a834447fa419d5df4107b52, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: BGM_Despair
+    audioClip: {fileID: 8300000, guid: a2a3fe085a9bc4239a2ef3aa8f29f4e6, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: BGM_Backdoor
+    audioClip: {fileID: 8300000, guid: 5b05523093bf04d22bd328cd6ce8814e, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: BGM_Ending
+    audioClip: {fileID: 8300000, guid: e2448596ccd124f7489e2f58c33ace78, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: BGM_BadEnd
+    audioClip: {fileID: 8300000, guid: 1cf06ebd23f8e4f2e9513b17eb973b19, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 1
+  - name: GameStart
+    audioClip: {fileID: 8300000, guid: da829ea0257d54f5a948934e160bb4fd, type: 3}
+    volume: 1
+    pitch: 1
+    isLoop: 0
   AudioMixer: {fileID: 24100000, guid: 7fe56ac61240e444aa13b07bdc08f25d, type: 2}
   MixerBgmGroup: {fileID: 24327276, guid: 7fe56ac61240e444aa13b07bdc08f25d, type: 2}
   MixerSeGroup: {fileID: 24387298, guid: 7fe56ac61240e444aa13b07bdc08f25d, type: 2}

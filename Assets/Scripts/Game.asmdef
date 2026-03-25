@@ -10,7 +10,8 @@
         "DOTween.Modules",
         "VContainer",
         "UniTask.DOTween",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "TextFx"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

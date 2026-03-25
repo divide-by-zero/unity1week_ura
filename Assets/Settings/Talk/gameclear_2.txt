@@ -11,9 +11,13 @@ sprite,1,akira_0_normal
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,0
+
 
 [main]
+bgm,BGM_Victory
 visible,2,0
+sound,Impact
 talk,2,第2戦——リナの勝利。
 
 talk,2,スクランブルを強化されてなお、リナはパターンを見抜いた。
@@ -36,6 +40,7 @@ talk,1,「……調子に乗らないの。相手の顔、見なさい」
 talk,2,男の表情から余裕は完全に消えていた。代わりに浮かんでいるのは——冷たい怒りだった。
 
 sprite,0,rina_normal
+sound,Alert
 talk,0,「……なんか、嫌な予感がする」
 
 talk,1,「ええ。追い詰められた相手が一番危険よ——気を抜かないで」

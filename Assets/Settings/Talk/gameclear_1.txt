@@ -11,10 +11,14 @@ sprite,1,akira_0_normal
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,0
+
 
 [main]
+bgm,BGM_Victory
 visible,2,0
 visible,0,1
+sound,Impact
 talk,0,「やった……やったわ！　勝った！」
 
 talk,2,成金の男の顔から、初めて余裕が消えた。
@@ -30,5 +34,6 @@ sprite,1,akira_0_normal
 talk,1,「このまますんなり勝たせてくれるといいのだけれど……」
 
 sprite,0,rina_smile
+sound,Decision
 talk,0,「……上等。次も勝ってやるわよ！」
 [end]

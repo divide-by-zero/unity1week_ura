@@ -11,9 +11,12 @@ sprite,1,akira_1
 visible,0,0
 visible,1,0
 visible,2,0
+visible,3,0
 
 [main]
+bgm,BGM_BadEnd
 visible,2,0
+sound,Impact
 talk,2,第3戦——リナの勝利。
 
 talk,2,レンズもない。通信もない。助けも来なかった。
@@ -37,6 +40,9 @@ talk,0,「……アキラ」
 
 talk,0,「あんたに見せたかったな、今の私」
 
+bgm,BGM_Despair
+sprite,3,intro
+visible,3,1
 talk,2,カジノ併設のバー——リナはカウンター席に一人で座り、グラスを傾けていた。
 
 talk,2,全財産は取り戻した。文句なしの勝利だ。
@@ -53,7 +59,7 @@ talk,2,オーナーの娘がシステムに不正侵入した件で、莫大な�
 talk,2,父親に頭が上がらなくなり——取引先との政略結婚が決まったこと。
 
 sprite,0,rina_surprise
-talk,0,「……は？　結婚？」
+sound,Surprise
 
 talk,2,リナは知らない。アキラがあの後、裏口のセキュリティを突破したことを。
 

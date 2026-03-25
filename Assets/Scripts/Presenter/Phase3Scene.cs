@@ -48,7 +48,7 @@ public class Phase3Scene : PhaseSceneBase
                 _multiWindowDetector.PingReceived.Subscribe(s =>
                 {
                     Debug.Log(s);
-                    _multiWindowDetector.SendPing("信じるわよアキラ！");
+                    _multiWindowDetector.SendPong("信じてるわよアキラ！");
                 }).AddTo(this);
 
                 //BackDoor が終わるのを待つ BackDoor側は Pong でメッセージを送る
